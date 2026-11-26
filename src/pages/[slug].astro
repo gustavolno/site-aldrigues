@@ -1,0 +1,24 @@
+---
+// Áreas de atuação e páginas institucionais (src/conteudo/paginas). Mesmo endereço do site antigo, sem o "-novo".
+import Base from '../layouts/Base.astro';
+import Cabeca from '../components/Cabeca.astro';
+import Chamada from '../components/Chamada.astro';
+import { paginas, resumo } from '../conteudo';
+import { GRUPOS } from '../config';
+
+export function getStaticPaths() {
+  const fora = ['contato', 'cartao-escritorio', 'consultoria-aldrigues-candido-advocacia'];   // contato tem página própria; os outros estavam vazios
+  return paginas.filter((p) => !fora.includes(p.slug)).map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const { Content, frontmatter } = p;
+const assunto = frontmatter.titulo.toLowerCase();
+const eArea = GRUPOS.some((g) => g.slugs.includes(p.slug));
+---
+<Base titulo={frontmatter.titulo} descricao={await resumo(p)} assunto={assunto}>
+  <Cabeca titulo={frontmatter.titulo} trilha={eArea ? [['/areas-de-atuacao/', 'Áreas de atuação'], ['', frontmatter.titulo]] : [['', frontmatter.titulo]]} />
+  <article class="faixa texto" data-cascata data-linha>
+    <Content />
+    <Chamada assunto={assunto} />
+  </article>
+</Base>

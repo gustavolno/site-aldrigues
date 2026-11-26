@@ -1,0 +1,19 @@
+---
+import { categoria, dataBR } from '../conteudo';
+interface Props { n: any; destaque?: boolean; i?: number }
+const { n, destaque = false, i = 0 } = Astro.props;
+const f = n.frontmatter;
+---
+<div class:list={['item-noticia', { destaque }]} data-revelar style={`--i:${i % 6}`}>
+  <article class="card-noticia">
+    <div class="capa tinto">
+      {f.imagem ? <img src={f.imagem} alt="" loading="lazy" decoding="async" width="800" height="500" /> : <span class="sem-capa" />}
+    </div>
+    <div class="card-corpo">
+      <p class="categoria">{categoria(n)}</p>
+      <h3><a href={`/noticias/${n.slug}/`}>{f.titulo}</a></h3>
+      {f.resumo && <p class="resumo">{f.resumo}</p>}
+      <p class="rodape-card"><time datetime={f.data}>{dataBR(f.data)}</time><span class="ler" aria-hidden="true">Ler notícia</span></p>
+    </div>
+  </article>
+</div>

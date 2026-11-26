@@ -1,0 +1,16 @@
+---
+titulo: "Direito Sindical"
+antigo: "/direito-sindical-novo/"
+descricao: "Direito Sindical (SANDY, João José. 1998, p. 7). A constante busca pela justa e equilibrada relação de trabalho nos trazem à criação dos sindicatos, que são cercados de garantias, não suficientes, para lutar pelos direitos das classes trabalhistas que representam. ALDRIGUES CÂNDIDO Direito Sindical Direito Sindical é um ramo que se caracteriza por regular as […]"
+---
+<p>(SANDY, João José. 1998, p. 7). A constante busca pela justa e equilibrada relação de trabalho nos trazem à criação dos sindicatos, que são cercados de garantias, não suficientes, para lutar pelos direitos das classes trabalhistas que representam.</p>
+<p>Direito Sindical é um ramo que se caracteriza por regular as relações jurídicas entre o empregador e os trabalhadores representados por um sindicato. Sindicato é um conjunto de pessoas de determinada classe de trabalhadores, designado a representar e defender os direitos desta coletividade. O seu principal fim não é a disciplina da classe, mas a sua defesa, a busca por reivindicações de melhores condições de trabalho, negociação coletiva e o acompanhamento de processos deflagrados com o conflito coletivo.</p>
+<p>Os sindicatos são organizações erigidas com o intuito de construir uma fonte de poder que pretende originar normas gerais de caráter abstrato, obtidas e aplicadas através da coação contra outros agentes que operam dentro da mesma sociedade.</p>
+<p><em><strong>É nítida a necessidade dessas entidades para que sejam garantidos os direitos fundamentais da pessoa humana. <br></strong></em></p>
+<p>O Direito Sindical é um direito essencial ao trabalhador que vem se instaurando de modo lento, contraditório e desigual.</p>
+<p>Há muito que ser conquistado pelos trabalhadores de todas as classes que necessitam estar muito bem assessorados por profissionais capacitados para ter certeza de que todas suas garantias serão asseguradas de forma total e justa; fala-se em justa, pois deve ser equilibrada, beneficiando ambas as partes, empregados e empregadores, para chegar o idealismo jurídico à classe dos trabalhadores.</p>
+<h2>Notícias</h2>
+<a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> </a> <h2> <a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> Quadrilha vende acesso a contas do INSS para empréstimos consignados </a> </h2>
+6 de maio de 2024 <a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> Saiba mais + </a> <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> </a> <h2> <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> INSS Antecipa Pagamentos em Resposta a Calamidade no RS </a> </h2>
+6 de maio de 2024 <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> Saiba mais + </a> <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> </a> <h2> <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> A história da Fernanda Montenegro com o INSS </a> </h2>
+23 de abril de 2024 <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> Saiba mais + </a>

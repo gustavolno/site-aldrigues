@@ -1,0 +1,9 @@
+---
+titulo: "Direito Tributário"
+antigo: "/tributario/"
+descricao: "O Direito Tributário tem a importante incumbência de regular, limitar e definir as relações jurídico-tributárias, estabelecendo deveres e obrigações."
+---
+<p>O <a href="/tributario/">Direito Tributário</a> é o ramo do Direito que estuda as relações entre o Fisco e os contribuintes, tendo como objeto primordial o campo das receitas de caráter compulsório, isto é, as relativas à imposição, fiscalização e arrecadação de impostos, taxas e contribuições, determinando-se, de maneira complementar, os poderes do Estado e a situação subjetiva dos <a href="https://pt.wikipedia.org/wiki/Contribuinte">contribuintes</a> (Miguel Reale, 2002).</p>
+<p>O Direito Tributário tem a importante incumbência de regular, limitar e definir as relações jurídico-tributárias, estabelecendo deveres e obrigações a ambas as partes e ainda limitando o poder de atuação do Estado quando do exercício de seu direito de arrecadação, fiscalização e até mesmo revisão de seus atos.</p>
+<p>A atuação do advogado no direito tributário se dá tanto na esfera administrativa, que pode ser resumida nas Secretarias de Fazenda dos estados e municípios e ainda, na esfera federal, à Receita Federal; quanto na esfera judicial, que se dá por meio das varas e juizados de fazenda pública e ainda por meio das Justiça Federal, onde o advogado busca a prestação jurisdicional em favor de seu cliente, seja para restituição de valores, anulação de lançamento de créditos tributários, compensação, ações anulatória, dentre outras.</p>
+<p>Cumpre ressaltar que, devido a imensa legislação tributária brasileira, é sempre importante consultar um advogado especialista em direito tributário para dirimir questões relativas à impostos, taxas, contribuições de melhoria, dentre outros, a fim de não ser prejudicado simplesmente pela falta de uma orientação correta.</p>

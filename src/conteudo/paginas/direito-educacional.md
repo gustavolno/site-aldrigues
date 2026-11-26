@@ -1,0 +1,9 @@
+---
+titulo: "Direito Educacional"
+fonte: "Anuário 2024/2025 do escritório"
+---
+<p>É o conjunto de normas, princípios, leis e regulamentos que versam sobre as relações de alunos, professores, administradores, especialistas e técnicos; enquanto envolvidos, mediata ou imediatamente no processo ensino-aprendizagem. É o conjunto de normas de todas as hierarquias: Leis Federais, Estaduais e Municipais, Portarias e Regimentos que disciplinam as relações entre os envolvidos no processo de ensino aprendizagem.</p>
+<p>O Direito Educacional enfatiza três contornos principais: o conjunto de normas reguladoras dos relacionamentos entre as partes envolvidas no processo-aprendizagem; a faculdade atribuída a todo ser humano e que se constitui na prerrogativa de aprender, de ensinar e de se aperfeiçoar; e o ramo da ciência jurídica especializado na área educacional.</p>
+<p>A Educação, como Direito Social, na Constituição Federal reza no seu Art. 6º que são direitos sociais: a educação, a saúde, o trabalho, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados. No Art. 205: A educação, direito de todos e dever do Estado e da família, será promovida e incentivada com a colaboração da sociedade, visando ao pleno desenvolvimento da pessoa, seu preparo para o exercício da cidadania e sua qualificação para o trabalho.</p>
+<p>Sobre o aspecto empresarial, os nossos profissionais atuam de forma consultiva nas relações entre os prestadores de serviços e os alunos; promovendo o preparo e a análise, bem como a negociação de Contratos de prestação de serviços educacionais, Contratos Sociais ou Estatutos de pessoas jurídicas.</p>
+<p>Sobre o aspecto aluno (consumidor), nossa atuação gira em torno das revisões contratuais de prestação de serviços, mensalidades, bem como os mais diversos assuntos que englobam essa relação delicada e abrangente, que é a relação aluno, professor e comunidade escolar como um todo.</p>

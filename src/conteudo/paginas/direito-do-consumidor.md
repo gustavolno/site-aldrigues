@@ -1,0 +1,15 @@
+---
+titulo: "Direito do Consumidor"
+antigo: "/direito-do-consumidor-novo/"
+descricao: "Direito do Consumidor Art. 1º - A República Federativa do Brasil de 1988, formada pela união indissolúvel dos Estados e Municípios e do Distrito Federal, constitui-se em Estado Democrático de Direito e tem como fundamentos: (...) ALDRIGUES CÂNDIDO Direito do […]"
+---
+<p>Art. 1º – A República Federativa do Brasil de 1988, formada pela união indissolúvel dos Estados e Municípios e do Distrito Federal, constitui-se em Estado Democrático de Direito e tem como fundamentos: (…)</p>
+<p>Marco no direito brasileiro, o Direito do Consumidor é relativamente um dos ramos do direito mais recente na legislação pátria. Em 1990, o Código de Defesa do Consumidor – CDC foi promulgado com o amparo da Constituição Federal e foi responsável por promover a educação dos brasileiros sobre seus direitos e deveres nas relações de consumo.</p>
+<p><em><strong>Ao entrar em vigor, reforçou os esforços que vinham sendo feitos pelas organizações civis e governamentais de proteção. </strong></em></p>
+<p>O Código de Defesa do Consumidor estabele-ceu uma série de normas para garantir que as relações de consumo sejam justas e não preju-diquem os cidadãos; sua finalidade é atender as necessidades dos consumidores, o respeito à sua dignidade, saúde e segurança; a proteção de seus interesses econômicos, a melhoria da sua qualidade de vida e, por fim, a transparência e harmonia das relações de consumo.</p>
+<p>Hoje, o consumidor é protegido pelo CDC e, junto às instituições responsáveis, deve ser analisado os interesses contrapostos de consumidores e fornecedores; com vistas a viabilizar formas de harmonização desses interesses, dentro das perspectivas da política nacional de relações de consumo adotada pelo Código de Defesa do Consumidor. Diante da complexidade atual das relações de consumo, surgem inúmeras situações que exi-gem a atuação do advogado do consumidor, aquele que atua em ambas as faces da relação, seja na seara consultiva, seja na seara conten-ciosa, de modo a evitar conflitos.</p>
+<h2>Notícias</h2>
+<a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> </a> <h2> <a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> Quadrilha vende acesso a contas do INSS para empréstimos consignados </a> </h2>
+6 de maio de 2024 <a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> Saiba mais + </a> <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> </a> <h2> <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> INSS Antecipa Pagamentos em Resposta a Calamidade no RS </a> </h2>
+6 de maio de 2024 <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> Saiba mais + </a> <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> </a> <h2> <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> A história da Fernanda Montenegro com o INSS </a> </h2>
+23 de abril de 2024 <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> Saiba mais + </a>

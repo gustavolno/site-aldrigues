@@ -1,0 +1,12 @@
+---
+titulo: "Nota - retorno do golpe contra servidores, aposentados e pensionistas"
+data: "2020-02-12"
+resumo: "Os servidores públicos, aposentados e pensionistas voltaram a receber cartas que informam sobre o suposto direito de resgate de restituições de contribuições previdenciárias indevidas. Ocorre que esse golpe vem sendo aplicado desde 2018, inclusive, na época, o Ministério da fazenda, através da Secretária de Previdência, alertou sobre o caso em seu site oficial. Após o […]"
+imagem: "/img/noticias/nota-retorno-do-golpe-contra-servidores-aposentados-e-pensio.jpg"
+---
+<p>Os servidores públicos, aposentados e pensionistas voltaram a receber cartas que informam sobre o suposto direito de resgate de restituições de contribuições previdenciárias indevidas.</p>
+<p>Ocorre que esse golpe vem sendo aplicado desde 2018, inclusive, na época, <a href="http://www.fazenda.gov.br/noticias/2018/novembro/secretaria-de-previdencia-alerta-para-golpe-contra-servidores">o Ministério da fazenda, através da Secretária de Previdência, alertou sobre o caso em seu site oficial</a>. Após o envio das cartas que informam sobre o suposto direito, as vítimas, ao entrarem em contato com as “Instituições” remetentes, são levadas a acreditar que devem pagar uma taxa no valor de R$68.420,17, por exemplo, podendo ser outro valor a depender da carta, cuja finalidade seria a liberação de suposta restituição.</p>
+<p>No cabeçalho da carta, podem se identificar com diversos nomes de “Instituições” oriundas de São Paulo, inclusive com supostos endereços e números de telefone. As pessoas que atendem esses números fazem parte do esquema.</p>
+<p>Aos servidores, aposentados e pensionistas, é importante esclarecer que qualquer serviço ou mesmo valor a receber, quando de fato existente e verídico, tratam-se de direitos que para o recebimento não necessita de pagamento de qualquer tipo de taxa. Como é o caso dos precatórios. </p>
+<p>Dessa forma, não é necessário a realização de depósitos ou transferências para ter direito a alguma restituição ou reembolso. A orientação é que, ao receber as cartas, façam o registro de ocorrência através da <a href="https://www.pcdf.df.gov.br">Polícia Civil</a> e não forneçam dados pessoais a terceiros, para que tais informações não sejam utilizadas para fins ilícitos. </p>
+<p>Por fim, vale destacar que, se possuir algum processo previdenciário em tramite, o ideal sempre é informar o advogado(a) que acompanha o processo sobre quaisquer cartas que venha a receber, para que este possa orientar e verificar a veracidade do documento.</p>

@@ -1,0 +1,37 @@
+---
+// Seção de contato: página inicial e página Contato. Foto sobre dois tons de fundo, como no bloco de contato do Tozzini.
+import Icone from './Icone.astro';
+import { TELEFONE, EMAIL, INSTAGRAM, HORARIO, ESCRITORIOS, zap } from '../config';
+interface Props { titulo?: string; nivel?: 'h1' | 'h2' }
+const { titulo = 'Escritório', nivel = 'h2' } = Astro.props;
+const H = nivel;
+---
+<section class="contato" aria-labelledby="titulo-contato">
+  <div class="contato-topo">
+    <div class="faixa contato-grade">
+      <figure class="contato-foto tinto-leve" data-revelar>
+        <img src="/img/escritorio/cafe.webp" alt="Xícara dourada com o brasão do escritório" width="1200" height="690" loading="lazy" decoding="async" />
+      </figure>
+      <div data-cascata>
+        <p class="pre-solto">Fale com o</p>
+        <H id="titulo-contato" class="grande-solto">{titulo}</H>
+        <span class="regua-curta" aria-hidden="true"></span>
+        <p class="lead">Conte o seu caso. O jeito mais rápido é pelo WhatsApp; atendemos {HORARIO.toLowerCase()}.</p>
+        <a class="botao ouro grande" href={zap()}><Icone nome="whatsapp" />Falar no WhatsApp</a>
+        <ul class="canais">
+          <li><a href={TELEFONE.link}><Icone nome="telefone" /><span><small>Telefone</small>{TELEFONE.texto}</span></a></li>
+          <li><a href={`mailto:${EMAIL}`}><Icone nome="email" /><span><small>E-mail</small>{EMAIL}</span></a></li>
+          <li><a href={INSTAGRAM} rel="noopener" target="_blank"><Icone nome="instagram" /><span><small>Instagram</small>@advocaciaaldriguescandido</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <ul class="faixa unidades" data-cascata>
+    {ESCRITORIOS.map((e) => (
+      <li>
+        <Icone nome="local" />
+        <div><h3>{e.nome}</h3><p>{e.endereco}</p><p class="tels">{e.telefones.join('  /  ')}</p></div>
+      </li>
+    ))}
+  </ul>
+</section>

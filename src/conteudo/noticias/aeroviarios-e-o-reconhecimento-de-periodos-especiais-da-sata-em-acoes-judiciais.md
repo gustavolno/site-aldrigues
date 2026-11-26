@@ -1,0 +1,32 @@
+---
+titulo: "Aeroviários e o reconhecimento de períodos especiais da SATA em ações judiciais"
+data: "2020-04-24"
+resumo: "A Empresa SATA encerrou suas atividades e foi aberto processo de falência, ocorre que muitos empregados acabaram ficando sem o Perfil Profissiográfico Previdenciário – PPP e sem a cópia do Laudo Técnico de Condições Ambientais – LTCAT, documentos indispensáveis para requerer o reconhecimento de atividade especial junto o Instituto Nacional de Seguro Social – INSS. […]"
+imagem: "/img/noticias/aeroviarios-e-o-reconhecimento-de-periodos-especiais-da-sata.jpg"
+---
+<p>A Empresa SATA encerrou suas atividades e foi aberto processo de falência, ocorre que muitos empregados acabaram ficando sem o Perfil Profissiográfico Previdenciário – PPP e sem a cópia do Laudo Técnico de Condições Ambientais – LTCAT, documentos indispensáveis para requerer o reconhecimento de atividade especial junto o Instituto Nacional de Seguro Social – INSS.</p>
+<p><strong>Mas o que é PPP e o LTCAT e qual sua importância dentro da ação de pedido de aposentadoria?</strong></p>
+<p>O PPP é um formulário emitido pela empresa ao trabalhador que exerça atividades submetidas a agentes físicos, químicos e biológicos, por exemplo. Os dados trazidos no PPP devem estar em conformidade com a legislação e sua elaboração é obrigatória desde abril de 2004. Vale destacar que antes do PPP eram exigidos outros formulários, que dependem de cada época de trabalho, conforme ordem abaixo:</p>
+<ul><li>SB-40 – Emitido entre 13/08/1979 a 11/10/1995;</li>
+<li>DISES BE 5235 – Emitido entre 16/09/1991 a 12/10/1995;</li>
+<li>DSS-8030 – Emitido entre 13/10/1995 a 25/10/2000;</li>
+<li>DIRBEN-8030 – Emitido entre 26/10/2000 a 31/12/2003;</li>
+<li>PPP – Emitido entre 01/01/2004 até os dias atuais.</li>
+</ul>
+<p>Ocorre que para a produção do PPP, que é um documento individual de cada trabalhador, é necessário a apresentação do LTCAT, que é o documento que regulamenta a atividade especial e é com base nesse documento que é elaborado os formulários acima mencionados. Ou seja, segundo o Art. 57 da Lei 9.732/98 é obrigatório por parte da empresa manter em sua posse o LTCAT original, devendo fornecer uma cópia ao trabalhador.</p>
+<p>Com o intuito de não prejudicar os ex-funcionários da empresa SATA que não tinham em sua posse o PPP na época e nem o LTCAT, o Sindicato Nacional dos Aeroviários, através da ação judicial, conseguiu autorização para que um perito e seus assistentes juntamente com os dirigentes sindicais realizassem trabalho de campo afim de que se verificasse a existência de atividades especiais por parte dos funcionários da empresa que laboravam no pátio ou pista dos aeroportos Santos Dumont – RJ, Internacional do Rio de janeiro (Antônio Carlos Jobim/Galeão) e Internacional de Brasília (Juscelino Kubitschek). O LTCAT foi devidamente elaborado, conforme as normas vigentes em 13/03/2017, e conta com 19 folhas que trazem informações de jornada de trabalho, tipos de equipamentos utilizados pelos trabalhadores, cargos, riscos, agentes que os trabalhadores estiveram expostos e nível de exposição suportado.</p>
+<p>Ocorre que com tal LTCAT (E POSTERIOMENTE COM O PPP ELABORADO PELO SNA/DF) foram ajuizadas ações de pedido de aposentadoria que tramitam em face do INSS. O pedido em trâmite no processo nº 1036621-32.2019.4.01.3400 foi julgado procedente reconhecendo os períodos especiais laborados na empresa SATA, levando em consideração tão somente a Carteira de Trabalho e Previdência Social – CTPS e LTCAT do trabalhador, com fornecimento posterior do PPP.</p>
+<p>O Juiz Federal Dr. Waldemar Cláudio de Carvalho da 14ª Vara da Seção Judiciária do Distrito Federal entendeu em sua sentença cabível o enquadramento de TODO O PERÍODO ESPECIAL DA EMPRESA SATA.</p>
+<p>Destaca-se aqui <strong>parte do trecho da sentença</strong> em que o magistrado da ênfase que no caso em questão a falta de PPP NA ÉPOCA não anula o reconhecimento da atividade especial, tendo em vista que o formulário é originário do Laudo Técnico de Condições Ambientais que foi apresentado pela advogada do autor:</p>
+<p><em>“Registro, ainda, que, quanto ao cargo do demandante, <strong>considero suficiente a anotação na CTPS</strong>, de onde se presume que não houve alteração do cargo em todo o período.</em></p>
+<p><em>No mais, a exigência de documentos outros, tal como o Perfil Profissiográfico Previdenciário – PPP, a somar-se ao referido laudo, como óbice ao reconhecimento do tempo especial em análise, seria apenas chancelar a injustiça e fechar os olhos para uma realidade laborativa devidamente comprovada por meio dos documentos acostados aos autos.</em></p>
+<p><em>Ora, <strong>o PPP, quando existente, trata-se de formulário elaborado conforme o laudo técnico</strong>. Logo, <strong>é suficiente este último para que sejam analisadas as condições das atividades laborativas alegadas como especiais</strong>. O PPP apenas torna as informações do laudo resumidas e de fácil averiguação pela Autarquia Previdenciária.</em></p>
+<p><em>Portanto, <strong>reconheço que o autor laborou exposto ao agente nocivo ruído (e outros)</strong> durante o período de 01/07/1995 a 15/03/2005, devendo, pois, ser convertido em tempo comum de contribuição.”</em></p>
+<p><em>Processo: 1036621-32.2019.4.01.3400</em></p>
+<p><em>Classe: Procedimento Comum Cível<br>Autor: José Raimundo Ferreira Batalha</em></p>
+<p><em>Advogado do(a) Autor: Wanessa Aldrigues Cândido – DF22.393<br>Réu: Instituto Nacional do Seguro Social</em></p>
+<p>Apesar de administrativamente o INSS ainda não reconhecer a atividade especial dos aeroviários apenas com o LTCAT a decisão judicial acima é de enorme importância não só para o autor em questão, mas para toda classe de aeroviários que laboraram na referida empresa e que não possuem os formulários para comprovação da atividade especial no período laborado, pois abre precedente para o reconhecimento de atividade especial em outros processos judiciais apenas com o Laudo Técnico de Condições Ambientais, frisando que hoje o SINDICATO está autorizado a fornecer o PPP para esse período também.</p>
+<p><strong>Dra. Lyggyanne Araújo Mota</strong><br>Advogada Previdenciária<br>OAB/DF 22.393</p>
+<p><strong>Dra. Wanessa Aldrigues Cândido</strong><br>Advogada Previdenciária<br>OAB/DF 22.393</p>
+<a href="/wp-content/uploads/sites/203/2020/04/Sentença-Tipo-A.pdf-2-9.pdf"> </a> <h3> <a href="/wp-content/uploads/sites/203/2020/04/Sentença-Tipo-A.pdf-2-9.pdf"> Jurisprudência </a> </h3>
+<p> Clique no ícone para ver o arquivo </p>

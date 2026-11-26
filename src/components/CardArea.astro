@@ -1,0 +1,17 @@
+---
+import Icone from './Icone.astro';
+import { RESUMO_AREA } from '../config';
+import { pagina } from '../conteudo';
+interface Props { slug: string; icone: string; i?: number }
+const { slug, icone, i = 0 } = Astro.props;
+const p = pagina(slug)!;
+---
+<!-- o <li> anima a entrada; o card interno anima o hover (os dois usam transform) -->
+<li data-revelar style={`--i:${i % 6}`}>
+  <div class="card-area">
+    <span class="card-icone"><Icone nome={icone} tamanho={26} /></span>
+    <h3><a href={`/${slug}/`}>{p.frontmatter.titulo}</a></h3>
+    {RESUMO_AREA[slug] && <p>{RESUMO_AREA[slug]}</p>}
+    <span class="saiba" aria-hidden="true">Saiba mais</span>
+  </div>
+</li>

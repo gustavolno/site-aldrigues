@@ -1,0 +1,143 @@
+---
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import Ornamento from '../components/Ornamento.astro';
+import CardArea from '../components/CardArea.astro';
+import Carrossel from '../components/Carrossel.astro';
+import Busca from '../components/Busca.astro';
+import TituloSecao from '../components/TituloSecao.astro';
+import Contato from '../components/Contato.astro';
+import { PEDIDOS, GRUPOS, TELEFONE, ESCRITORIOS, zap } from '../config';
+import { noticias, pagina, categoria } from '../conteudo';
+
+const comCapa = noticias.filter((n) => n.frontmatter.imagem);
+const emDestaque = comCapa.slice(0, 3);
+const maisNoticias = comCapa.slice(3, 6);
+const destaques = [...GRUPOS[0].slugs.slice(0, 4).map((s) => [s, GRUPOS[0].icone]), ...GRUPOS[1].slugs.slice(0, 2).map((s) => [s, GRUPOS[1].icone])]
+  .filter(([s]) => pagina(s));
+const faixa = [...GRUPOS[0].slugs, ...GRUPOS[1].slugs.slice(0, 2), 'direito-civil', 'direito-do-consumidor', 'direito-de-familia-e-sucessoes', 'direito-tributario']
+  .map((s) => pagina(s)?.frontmatter.titulo).filter(Boolean);
+const TITULO = 'Advocacia previdenciária e trabalhista, com atendimento em todo o Brasil.';
+---
+<Base titulo="Aldrigues Cândido Advocacia">
+  <section class="abertura" aria-labelledby="titulo-inicio">
+    <!-- vídeo da sede ao fundo, escurecido e tingido de marrom; sem som. Com movimento reduzido fica só o pôster (script no fim). -->
+    <div class="abertura-foto" aria-hidden="true">
+      <!-- WebM primeiro: navegadores sem H.264 (ex.: navegador interno do VS Code) não tocam o MP4 -->
+      <video data-parallax-fundo data-video-fundo poster="/video/abertura.jpg" width="576" height="1248" autoplay muted loop playsinline preload="auto">
+        <source src="/video/abertura.webm" type="video/webm" />
+        <source src="/video/abertura.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="faixa abertura-grade">
+      <div class="abertura-texto">
+        <p class="assinatura entra" style="--d:0">Aldrigues Cândido & Associados</p>
+        <!-- cada palavra sobe de trás de uma máscara, em sequência -->
+        <h1 id="titulo-inicio">{TITULO.split(' ').map((p, i) => <><span class="palavra"><span style={`--p:${i}`}>{p}</span></span>{' '}</>)}</h1>
+        <Ornamento />
+        <p class="lead entra" style="--d:6">Aposentadoria, revisão de benefício do INSS e direitos do trabalhador. Conte o seu caso para a nossa equipe pelo WhatsApp ou por telefone.</p>
+        <div class="acoes entra" style="--d:7">
+          <a class="botao ouro grande" href={zap()}><Icone nome="whatsapp" />Falar no WhatsApp</a>
+          <a class="botao contorno grande" href={TELEFONE.link}><Icone nome="telefone" />{TELEFONE.texto}</a>
+        </div>
+        <div class="entra" style="--d:8"><Busca /></div>
+      </div>
+      <figure class="selo">
+        <div data-parallax>
+          <img src="/img/brasao.webp" alt="Brasão do escritório Aldrigues Cândido Advocacia" width="640" height="640" />
+          <span class="brilho" aria-hidden="true"></span>
+        </div>
+      </figure>
+    </div>
+    <a class="rolar" href="#atendimento"><span>Do que você precisa?</span><i aria-hidden="true"></i></a>
+  </section>
+
+  <div class="faixa-areas" aria-hidden="true">
+    <div class="trilho">{[0, 1].map(() => faixa.map((t) => <span>{t}</span>))}</div>
+  </div>
+
+  <section id="atendimento" class="atendimento" aria-labelledby="o-que-precisa">
+    <div class="faixa">
+      <TituloSecao pre="Como podemos ajudar" titulo="Do que você precisa?" id="o-que-precisa" />
+      <ul class="pedidos">
+        {PEDIDOS.map((p, i) => (
+          <li data-revelar style={`--i:${i}`}>
+            <a href={p.href}>
+              <span class="card-icone"><Icone nome={p.icone} tamanho={28} /></span>
+              <strong>{p.texto}</strong>
+              <small>{p.dica}</small>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="secao fundadora" aria-labelledby="titulo-wanessa">
+    <div class="faixa fundadora-grade">
+      <figure class="retrato" data-revelar>
+        <img src="/img/wanessa.jpg" alt="Dra. Wanessa Aldrigues Cândido" width="570" height="861" loading="lazy" decoding="async" />
+      </figure>
+      <div data-cascata>
+        <p class="cargo">Sócia fundadora</p>
+        <h2 id="titulo-wanessa" class="nome">Dra. Wanessa Aldrigues Cândido</h2>
+        <Ornamento />
+        <p class="lead">Advogada militante desde 2005 e especialista em Direito Previdenciário há 24 anos. Presidente da Subseção de Taguatinga da OAB/DF (gestão 2025–2027).</p>
+        <p>Doutoranda em Direito Social, com pós-graduação em Direito Previdenciário e em Direito do Trabalho e MBA em Planejamento Previdenciário. Presidiu a Comissão de Direito Previdenciário e Social da OAB/DF e foi conselheira da Ordem. Inscrita na OAB do DF, de MG, de GO e do ES.</p>
+        <p class="acoes"><a class="botao contorno-escuro" href="/equipe/#wanessa">Currículo completo<Icone nome="seta" tamanho={18} /></a><a class="botao contorno-escuro" href="/escritorio-aldrigues-candido/">Conheça o escritório<Icone nome="seta" tamanho={18} /></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- bloco dividido: foto encostada na borda da tela, texto do outro lado -->
+  <section class="dividido" aria-labelledby="titulo-escritorio">
+    <figure class="dividido-foto tinto-leve" data-revelar><img src="/img/escritorio/wanessa-mesa.webp" alt="Dra. Wanessa Aldrigues Cândido no escritório" width="1200" height="690" loading="lazy" decoding="async" /></figure>
+    <div class="dividido-texto" data-cascata>
+      <p class="pre-solto">Conheça o</p>
+      <h2 id="titulo-escritorio" class="grande-solto">Escritório</h2>
+      <span class="regua-curta" aria-hidden="true"></span>
+      <p>Ao longo de mais de duas décadas, o escritório Aldrigues Cândido Advocacia tem sido sinônimo de dedicação, excelência e humanização na prática do Direito. Nasceu do sonho de transformar vidas através do acesso à justiça, especialmente das pessoas mais vulneráveis, e hoje atua em mais de 30 áreas do Direito.</p>
+      <blockquote><p>“Sonhamos e realizamos! Na vida escrevemos a história que queremos vivenciar!”</p><footer>Wanessa Aldrigues Cândido</footer></blockquote>
+      <p><a class="botao contorno" href="/escritorio-aldrigues-candido/">Nossa história<Icone nome="seta" tamanho={18} /></a></p>
+    </div>
+  </section>
+
+  <section class="numeros" aria-label="O escritório em números">
+    <dl class="faixa numeros-grade">
+      <div data-revelar><dt data-contar="20" data-prefixo="+">+20</dt><dd>anos de atuação</dd></div>
+      <div data-revelar><dt data-contar="30" data-prefixo="+">+30</dt><dd>áreas do Direito</dd></div>
+      <div data-revelar><dt data-contar={ESCRITORIOS.length}>{ESCRITORIOS.length}</dt><dd>escritórios, no DF e no ES</dd></div>
+      <div data-revelar><dt>Brasil</dt><dd>atendimento em todo o país</dd></div>
+    </dl>
+  </section>
+
+  <section class="secao areas" aria-labelledby="titulo-areas">
+    <div class="faixa">
+      <TituloSecao pre="Nossas" titulo="Áreas de atuação" id="titulo-areas">
+        <a class="botao contorno" href="/areas-de-atuacao/">Ver todas<Icone nome="seta" tamanho={18} /></a>
+      </TituloSecao>
+      <ul class="grade-areas">{destaques.map(([s, ic], i) => <CardArea slug={s} icone={ic} i={i} />)}</ul>
+    </div>
+  </section>
+
+  <section class="secao noticias" aria-labelledby="titulo-noticias">
+    <div class="faixa">
+      <TituloSecao pre="Conteúdos em" titulo="Destaque" id="titulo-noticias">
+        <a class="botao contorno-escuro" href="/noticias/">Todas as notícias<Icone nome="seta" tamanho={18} /></a>
+      </TituloSecao>
+      <div class="destaque-grade">
+        <div data-revelar><Carrossel itens={emDestaque} /></div>
+        <ul class="lista-noticias" data-cascata>
+          {maisNoticias.map((n) => (
+            <li>
+              <div class="tinto"><img src={n.frontmatter.imagem} alt="" width="800" height="500" loading="lazy" decoding="async" /></div>
+              <div><p class="categoria">{categoria(n)}</p><a href={`/noticias/${n.slug}/`}>{n.frontmatter.titulo}</a></div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Contato />
+</Base>

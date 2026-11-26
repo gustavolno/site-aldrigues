@@ -1,0 +1,8 @@
+---
+// O filete com o losango do logo, usado como divisor (é o único enfeite que se repete no site).
+interface Props { centro?: boolean }
+const { centro = false } = Astro.props;
+---
+<span class:list={['ornamento', { centro }]} aria-hidden="true">
+  <svg width="120" height="12" viewBox="0 0 120 12"><path d="M0 6h50M70 6h50" stroke="currentColor" stroke-width="1" /><path d="M60 1l5 5-5 5-5-5z" fill="currentColor" /><circle cx="48" cy="6" r="1.4" fill="currentColor" /><circle cx="72" cy="6" r="1.4" fill="currentColor" /></svg>
+</span>

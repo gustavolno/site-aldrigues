@@ -1,0 +1,220 @@
+---
+import '../styles/global.css';
+import Icone from '../components/Icone.astro';
+import { TELEFONE, HORARIO, CNPJ, EMAIL, INSTAGRAM, ESCRITORIOS, MENU, GRUPOS, zap } from '../config';
+import { pagina } from '../conteudo';
+
+interface Props { titulo: string; descricao?: string; assunto?: string; imagem?: string }
+const { titulo, descricao = 'Advocacia previdenciária e trabalhista com atendimento em todo o Brasil. Fale com a equipe pelo WhatsApp.', assunto = '', imagem = '/img/logo-oficial.png' } = Astro.props;
+const nomeSite = 'Aldrigues Cândido Advocacia';
+const tituloCompleto = titulo === nomeSite ? titulo : `${titulo} | ${nomeSite}`;
+const atual = Astro.url.pathname;
+const inicio = atual === '/';
+const principais = GRUPOS[0].slugs.slice(0, 4).concat(GRUPOS[1].slugs.slice(0, 2)).filter(pagina);
+
+// Dados para o Google (só na página inicial): o mesmo que está no rodapé, nada além.
+const dadosGoogle = {
+  '@context': 'https://schema.org', '@type': 'LegalService', name: 'Aldrigues Cândido & Associados', url: Astro.site?.href,
+  logo: new URL('/img/logo-oficial.png', Astro.site).href, telephone: '+55-61-3352-5782', email: EMAIL,
+  address: { '@type': 'PostalAddress', streetAddress: 'QSD 11, lote 39, Taguatinga Sul', addressLocality: 'Brasília', addressRegion: 'DF', postalCode: '72020-110', addressCountry: 'BR' },
+  areaServed: 'BR', sameAs: [INSTAGRAM],
+};
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script is:inline>
+    document.documentElement.classList.add('js');
+    // a cortina com o brasão só aparece na primeira página da visita
+    try { if (sessionStorage.getItem('viu-cortina')) document.documentElement.classList.add('ja-viu'); else sessionStorage.setItem('viu-cortina', '1'); } catch (e) {}
+  </script>
+  <title>{tituloCompleto}</title>
+  <meta name="description" content={descricao} />
+  <link rel="canonical" href={new URL(atual, Astro.site)} />
+  <meta name="theme-color" content="#21150F" />
+  <meta property="og:type" content={atual.startsWith('/noticias/') && atual !== '/noticias/' ? 'article' : 'website'} />
+  <meta property="og:site_name" content={nomeSite} />
+  <meta property="og:title" content={tituloCompleto} />
+  <meta property="og:description" content={descricao} />
+  <meta property="og:url" content={new URL(atual, Astro.site)} />
+  <meta property="og:image" content={new URL(imagem, Astro.site)} />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  {import.meta.env.TESTE && <meta name="robots" content="noindex, nofollow" />}
+  <link rel="icon" href="/img/logo-oficial.png" />
+  <link rel="apple-touch-icon" href="/img/logo-oficial.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400..700&display=swap" rel="stylesheet" />
+  {inicio && <link rel="preload" as="image" href="/img/brasao.webp" />}
+  {inicio && <link rel="preload" as="image" href="/video/abertura.jpg" fetchpriority="high" />}
+  {inicio && <script type="application/ld+json" set:html={JSON.stringify(dadosGoogle)} />}
+</head>
+<body>
+  {inicio && (
+    <div class="cortina" aria-hidden="true">
+      <img src="/img/brasao.webp" alt="" width="640" height="640" />
+    </div>
+  )}
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo" data-topo>
+    <div class="faixa topo-grade">
+      <a href="/" class="marca" aria-label="Aldrigues Cândido Advocacia, página inicial"><img src="/img/logo-dourada.png" alt="" width="143" height="50" /></a>
+      <nav class="menu-largo" aria-label="Principal">
+        <ul>{MENU.map(([href, nome]) => <li><a href={href} aria-current={atual.startsWith(href) ? 'page' : undefined}>{nome}</a></li>)}</ul>
+      </nav>
+      <a class="botao ouro so-largo" href={zap(assunto)}><Icone nome="whatsapp" tamanho={20} />Fale conosco</a>
+      <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-celular" data-botao-menu>
+        <span class="abre"><Icone nome="menu" /></span><span class="fecha"><Icone nome="fechar" /></span><span>Menu</span>
+      </button>
+    </div>
+    <nav id="menu-celular" class="menu-celular" aria-label="Principal (celular)" data-menu>
+      <ul>{MENU.map(([href, nome]) => <li><a href={href} aria-current={atual.startsWith(href) ? 'page' : undefined}>{nome}</a></li>)}</ul>
+      <a class="botao ouro" href={zap(assunto)}><Icone nome="whatsapp" tamanho={20} />Falar no WhatsApp</a>
+    </nav>
+    <div class="progresso" aria-hidden="true"></div>
+  </header>
+
+  <main id="conteudo"><slot /></main>
+
+  <footer class="rodape">
+    <div class="faixa rodape-grade" data-cascata>
+      <div class="rodape-marca">
+        <img src="/img/logo-dourada.png" alt="Aldrigues Cândido Advocacia" width="172" height="60" loading="lazy" />
+        <p>Aldrigues Cândido & Associados. Advocacia, consultoria e assessoria jurídica, com atendimento em todo o Brasil.</p>
+        <a class="social" href={INSTAGRAM} rel="noopener" target="_blank"><Icone nome="instagram" tamanho={20} />Instagram</a>
+      </div>
+      <nav aria-label="Rodapé">
+        <h2>Navegação</h2>
+        <ul>{MENU.map(([href, nome]) => <li><a href={href}>{nome}</a></li>)}<li><a href="/equipe/">Equipe</a></li></ul>
+      </nav>
+      <div>
+        <h2>Áreas principais</h2>
+        <ul>{principais.map((s) => <li><a href={`/${s}/`}>{pagina(s)!.frontmatter.titulo}</a></li>)}</ul>
+      </div>
+      <div>
+        <h2>Contato</h2>
+        <ul class="contatos">
+          <li><a href={zap()}><Icone nome="whatsapp" tamanho={18} />WhatsApp</a></li>
+          <li><a href={TELEFONE.link}><Icone nome="telefone" tamanho={18} />{TELEFONE.texto}</a></li>
+          <li><a href={`mailto:${EMAIL}`}><Icone nome="email" tamanho={18} />{EMAIL}</a></li>
+          <li><Icone nome="relogio" tamanho={18} />{HORARIO}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="faixa enderecos" data-cascata>
+      {ESCRITORIOS.map((e) => <p><strong>{e.nome}</strong><br />{e.endereco}</p>)}
+    </div>
+    <div class="faixa legal">
+      <p>© {new Date().getFullYear()} Aldrigues Cândido & Associados</p>
+      <p>CNPJ {CNPJ}</p>
+    </div>
+  </footer>
+
+  <!-- celular: os dois jeitos de falar com o escritório sempre à mão -->
+  <nav class="barra-contato" aria-label="Falar com o escritório">
+    <a class="botao ouro" href={zap(assunto)}><Icone nome="whatsapp" tamanho={20} />WhatsApp</a>
+    <a class="botao contorno" href={TELEFONE.link}><Icone nome="telefone" tamanho={20} />Ligar</a>
+  </nav>
+
+  <script>
+    const topo = document.querySelector<HTMLElement>('[data-topo]')!;
+    const botao = document.querySelector<HTMLButtonElement>('[data-botao-menu]')!;
+    const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // cabeçalho transparente no alto, sólido depois de rolar
+    const aoRolar = () => topo.classList.toggle('rolou', scrollY > 24);
+    addEventListener('scroll', aoRolar, { passive: true });
+    aoRolar();
+
+    // menu do celular
+    const abrir = (sim: boolean) => { botao.setAttribute('aria-expanded', String(sim)); topo.classList.toggle('menu-aberto', sim); };
+    botao.addEventListener('click', () => abrir(botao.getAttribute('aria-expanded') !== 'true'));
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && topo.classList.contains('menu-aberto')) { abrir(false); botao.focus(); } });
+    document.querySelectorAll('[data-menu] a').forEach((a) => a.addEventListener('click', () => abrir(false)));
+
+    // o conteúdo surge ao entrar na tela: [data-revelar] é um bloco; [data-cascata] faz cada filho surgir um depois do outro.
+    // O atraso é contado por lote que entra junto (não pela posição na página), senão o 30º parágrafo demoraria 3 s.
+    // Sem IntersectionObserver ou com movimento reduzido, tudo já fica visível.
+    const alvos = document.querySelectorAll('[data-revelar], [data-cascata] > *');
+    if (reduz || !('IntersectionObserver' in window)) alvos.forEach((el) => el.classList.add('visivel'));
+    else {
+      const io = new IntersectionObserver((es) => {
+        let k = 0;
+        es.forEach((e) => {
+          if (!e.isIntersecting) return;
+          (e.target as HTMLElement).style.setProperty('--i', String(Math.min(k++, 6)));
+          e.target.classList.add('visivel');
+          io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -6% 0px' });
+      alvos.forEach((el) => io.observe(el));
+    }
+
+    // números que contam de 0 até o valor quando aparecem (só dados reais: "+10 anos")
+    document.querySelectorAll<HTMLElement>('[data-contar]').forEach((el) => {
+      if (reduz || !('IntersectionObserver' in window)) return;
+      const ate = Number(el.dataset.contar), pre = el.dataset.prefixo ?? '';
+      el.textContent = pre + '0';
+      new IntersectionObserver(([e], obs) => {
+        if (!e.isIntersecting) return;
+        obs.disconnect();
+        const t0 = performance.now();
+        const passo = (t: number) => {
+          const p = Math.min((t - t0) / 1600, 1);
+          el.textContent = pre + Math.round(ate * (1 - Math.pow(1 - p, 4)));
+          if (p < 1) requestAnimationFrame(passo);
+        };
+        requestAnimationFrame(passo);
+      }).observe(el);
+    });
+
+    // barra de leitura do cabeçalho e linha ao lado do texto: seguem a rolagem com um leve amortecimento
+    const barra = document.querySelector<HTMLElement>('.progresso')!;
+    const linhas = [...document.querySelectorAll<HTMLElement>('[data-linha]')];
+    let alvo = 0, atual = 0, girando = false;
+    const medir = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      alvo = max > 0 ? scrollY / max : 0;
+      linhas.forEach((l) => {
+        const r = l.getBoundingClientRect();
+        l.style.setProperty('--leitura', String(Math.min(Math.max((innerHeight * 0.6 - r.top) / r.height, 0), 1)));
+      });
+      if (!girando) { girando = true; requestAnimationFrame(suavizar); }
+    };
+    const suavizar = () => {
+      atual += (alvo - atual) * (reduz ? 1 : 0.16);
+      barra.style.scale = `${atual} 1`;
+      if (Math.abs(alvo - atual) > 0.0005) requestAnimationFrame(suavizar); else girando = false;
+    };
+    addEventListener('scroll', medir, { passive: true });
+    addEventListener('resize', medir);
+    medir();
+
+    // vídeo de fundo da abertura: com movimento reduzido fica parado no pôster
+    const video = document.querySelector<HTMLVideoElement>('[data-video-fundo]');
+    if (video) {
+      video.muted = true; // o atributo sozinho nem sempre libera o autoplay
+      if (reduz) video.pause(); else video.play().catch(() => {});
+    }
+
+    // parallax discreto: o brasão desce devagar e a foto de fundo mais devagar ainda
+    const px = document.querySelector<HTMLElement>('[data-parallax]');
+    const fundo = document.querySelector<HTMLElement>('[data-parallax-fundo]');
+    if ((px || fundo) && !reduz) {
+      let pedido = 0;
+      addEventListener('scroll', () => {
+        if (pedido) return;
+        pedido = requestAnimationFrame(() => {
+          pedido = 0;
+          if (scrollY > innerHeight) return;
+          if (px) px.style.translate = `0 ${scrollY * 0.12}px`;
+          if (fundo) fundo.style.translate = `0 ${scrollY * 0.35}px`;
+        });
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>

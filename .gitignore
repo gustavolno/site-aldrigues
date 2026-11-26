@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.astro/
+.env
+.dev.vars
+.wrangler/
+# gerados no build a partir do painel (scripts/baixar-painel.mjs)
+src/conteudo/noticias-painel/
+public/img/painel/
+banco/
+# originais recebidos (o site usa a versão comprimida em public/video/)
+*.pdf
+/WhatsApp Video*.mp4

@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabeca from '../components/Cabeca.astro';
+import CardArea from '../components/CardArea.astro';
+import Chamada from '../components/Chamada.astro';
+import { GRUPOS } from '../config';
+import { pagina } from '../conteudo';
+---
+<Base titulo="Áreas de atuação" descricao="Áreas de atuação da Aldrigues Cândido Advocacia: previdência, aposentadoria, direito do trabalho e outras áreas do Direito.">
+  <Cabeca titulo="Áreas de atuação" trilha={[['', 'Áreas de atuação']]}>
+    <p class="lead">Previdência e trabalho são o centro da nossa atuação, que hoje reúne mais de 30 áreas do Direito. Escolha um assunto para saber mais.</p>
+  </Cabeca>
+  <div class="secao claro">
+    <div class="faixa">
+      {GRUPOS.map((g, n) => (
+        <section class="grupo-areas" aria-labelledby={`g-${n}`}>
+          <h2 id={`g-${n}`} data-revelar>{g.titulo}</h2>
+          <ul class="grade-areas">{g.slugs.filter(pagina).map((s, i) => <CardArea slug={s} icone={g.icone} i={i} />)}</ul>
+        </section>
+      ))}
+      <Chamada />
+    </div>
+  </div>
+</Base>

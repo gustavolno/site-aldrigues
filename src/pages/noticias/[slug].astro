@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cabeca from '../../components/Cabeca.astro';
+import Chamada from '../../components/Chamada.astro';
+import { noticias, dataBR, resumo, categoria } from '../../conteudo';
+
+export function getStaticPaths() {
+  return noticias.map((n) => ({ params: { slug: n.slug }, props: { n } }));
+}
+const { n } = Astro.props;
+const { Content, frontmatter } = n;
+---
+<Base titulo={frontmatter.titulo} descricao={await resumo(n)} imagem={frontmatter.imagem || undefined}>
+  <Cabeca titulo={frontmatter.titulo} trilha={[['/noticias/', 'Notícias'], ['', categoria(n)]]}>
+    <p class="meta-noticia"><time datetime={frontmatter.data}>{dataBR(frontmatter.data)}</time></p>
+  </Cabeca>
+  <article class="faixa texto" data-cascata data-linha>
+    {frontmatter.imagem && <img class="capa-artigo" src={frontmatter.imagem} alt="" width="800" height="500" />}
+    <Content />
+    <Chamada />
+  </article>
+</Base>

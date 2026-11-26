@@ -1,0 +1,14 @@
+---
+// Título em dois níveis ("Nossas" / "ÁREAS DE ATUAÇÃO") com um filete que corre até a borda da tela.
+// O <slot /> fica à direita do título (ex.: botão "Ver todas").
+interface Props { pre: string; titulo: string; id: string; nivel?: 'h1' | 'h2' }
+const { pre, titulo, id, nivel = 'h2' } = Astro.props;
+const H = nivel;
+---
+<div class="titulo-duplo" data-revelar>
+  <div class="titulo-linha">
+    <H id={id}><span class="pre">{pre}</span> <span class="titulo-grande">{titulo}</span></H>
+    <slot />
+  </div>
+  <span class="regua" aria-hidden="true"></span>
+</div>

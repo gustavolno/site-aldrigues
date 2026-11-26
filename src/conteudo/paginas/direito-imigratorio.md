@@ -1,0 +1,10 @@
+---
+titulo: "Direito Imigratório"
+fonte: "Anuário 2024/2025 do escritório"
+---
+<p>A análise das novas normas migratórias brasileiras denotou que, muito embora tenha ocorrido um inegável avanço para a regulação e efetivação de direitos do imigrante, existem pontos dúbios e discricionariedades que permitem insegurança jurídica e descaso para com o estrangeiro, prejudicando a humanização da política migratória brasileira, bem como de harmonia com as normas constitucionais.</p>
+<p>A realização de análise crítica dos clássicos institutos da imigração e da cidadania acabaram sofrendo uma profunda releitura em seus conteúdos e pressupostos jurídicos.</p>
+<p>Os novos rumos e desafios, considerando os contornos e transformações da imigração e cidadania na atualidade, levam em conta as particularidades e potencialidades de criação de novas figuras jurídicas no âmbito dos processos de integração regional.</p>
+<p>Dessa forma, devem ser levados em consideração alguns princípios supranacionais, como o da não discriminação em razão da nacionalidade, estes, que impulsionam cada vez mais a criação de normas comunitárias para disciplinarem o conflito de leis e de jurisdição no tratamento das questões relativas ao Direito Internacional Privado.</p>
+<p>Cumpre salientar que os conflitos jurídicos decorrentes das relações internacionais privatistas surgem, frequentemente, em razão tanto da imigração, a qual potencializa o contato entre legislações estatais diferentes, quanto da cidadania. Nesta seara, torna-se imprescindível primeiro explorar a temática da imigração, contemplando todas as suas particularidades atuais e desafios para depois tratar do tema no âmbito brasileiro e as dificuldades impostas aos imigrantes no mundo globalizado.</p>
+<p>Considerando a legislação convencional internacional sobre o assunto, faz-se necessário uma abordagem e um estudo da cidadania e da nacionalidade realizando uma profunda análise sob a perspectiva, sobre as particularidades da legislação brasileira e do instituto da proteção diplomática a fim de solucionar os conflitos advindos da matéria em questão.</p>

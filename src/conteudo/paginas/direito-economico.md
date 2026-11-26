@@ -1,0 +1,7 @@
+---
+titulo: "Direito Econômico"
+fonte: "Anuário 2024/2025 do escritório"
+---
+<p>Sediado na produção e circulação de riquezas, no desenvolvimento da economia do país, o Direito Econômico lança o olhar sobre as práticas adotadas pelos diversos setores de produção, buscando intervir na regulação do mercado, minimizando a lei do mais forte, impedindo, por exemplo, a concentração de riqueza e de determinado ramo de atuação a grupos pequenos de empresários. Pretende fomentar a livre concorrência, mas com porções de intervenção moduladora da atividade.</p>
+<p>Manipulação de preços, como consequência de monopólio, oligopólios, fusões e incorporações empresariais; que reduzem ou aniquilam a concorrência de maneira a concentrar o poder sobre determinado setor nas mãos de poucos, esse é o combate ao qual se presta o Direito Econômico. Órgão Administrativo máximo de gestão do setor é o CADE, Conselho Administrativo de Defesa Econômica, para onde confluem as causas atinentes à matéria, o que, inclusive, faz confundir a expressão Direito Econômico, mais ampla, com Direito da Concorrência, mais específico.</p>
+<p>De todo modo, é a articulação do causídico junto ao órgão, com amplo conhecimento de sua composição e seu regimento, bem como conhecimento das matérias de fundo, como Direito Civil e Societário, que são os cabedais necessários para o bom trânsito nos assuntos de praxe desse ramo.</p>

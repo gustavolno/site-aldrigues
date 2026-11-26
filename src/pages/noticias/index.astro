@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cabeca from '../../components/Cabeca.astro';
+import CardNoticia from '../../components/CardNoticia.astro';
+import { noticias } from '../../conteudo';
+---
+<Base titulo="Notícias" descricao="Notícias sobre aposentadoria, INSS, direitos trabalhistas e outros temas do Direito.">
+  <Cabeca titulo="Notícias" trilha={[['', 'Notícias']]}>
+    <p class="lead">Aposentadoria, INSS, direitos trabalhistas e outros temas do Direito, explicados pela nossa equipe.</p>
+  </Cabeca>
+  <div class="secao noticias">
+    <div class="faixa grade-noticias todas">
+      {noticias.map((n, i) => <CardNoticia n={n} destaque={i === 0} i={i} />)}
+    </div>
+  </div>
+</Base>

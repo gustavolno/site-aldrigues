@@ -1,0 +1,18 @@
+---
+// Faixa escura do topo das páginas internas (o cabeçalho transparente fica por cima dela).
+import Ornamento from './Ornamento.astro';
+interface Props { titulo: string; trilha?: [string, string][] }
+const { titulo, trilha = [] } = Astro.props;
+---
+<div class="cabeca">
+  <div class="faixa">
+    {trilha.length > 0 && (
+      <nav aria-label="Você está em" class="trilha">
+        <a href="/">Início</a>{trilha.map(([href, nome]) => <><span aria-hidden="true">/</span>{href ? <a href={href}>{nome}</a> : <span>{nome}</span>}</>)}
+      </nav>
+    )}
+    <h1>{titulo}</h1>
+    <Ornamento />
+    <slot />
+  </div>
+</div>

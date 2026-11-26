@@ -1,0 +1,15 @@
+---
+titulo: "Direito Internacional"
+antigo: "/direito-internacional-novo/"
+descricao: "Direito Internacional O Direito Internacional Público e Privado tem ganhado um impulso maior socialmente e mundialmente devido ao processo de globalização, permeando cada vez mais no cotidiano dos indivíduos nos dias atuais. Sua relevância transcende a regulamentação das relações de Estados e de Organizações Internacionais e alcança, normalmente, de forma silenciosa e invisível, a todos […]"
+---
+<p>O Direito Internacional Público e Privado tem ganhado um impulso maior socialmente e mundialmente devido ao processo de globalização, permeando cada vez mais no cotidiano dos indivíduos nos dias atuais.</p>
+<p>Sua relevância transcende a regulamentação das relações de Estados e de Organizações Internacionais e alcança, normalmente, de forma silenciosa e invisível, a todos nós.</p>
+<p>Conjunto de normas que tutela as relações externas dos agentes que compõem a sociedade internacional. Estes, chamados sujeitos de Direito Internacional, são compostos pelo: </p>
+<p>Direito Internacional Público trata das relações jurídicas (direitos e deveres) entre Estados, Estados soberanos, Organizações Internacionais Intergovernamentais. O Direito Internacional Público tem como missão o estabelecimento de uma norma jurídica internacional, ou seja, o respeito à soberania dos Estados, aos indivíduos e às suas peculiaridades. Por isso, muitos tratados e convenções são realizados, sempre com o propósito de aproximar os Estados.</p>
+<p>Direito Internacional Privado trata da aplicação de leis civis, comerciais ou penais de um Estado sobre particulares (pessoas físicas ou jurídicas) de outro Estado. Seu propósito é indicar leis que regulem contratos firmados entre indivíduos de países diferentes, regular desordens entre Estados e particulares, indicando qual será a lei a ser utilizada para estabelecer uma relação, seja na esfera familiar, considerando as questões de alimentação, adoção, testamento, sucessões, contratual e regulatório e nos demais ramos do Direito Privado.</p>
+<h2>Notícias</h2>
+<a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> </a> <h2> <a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> Quadrilha vende acesso a contas do INSS para empréstimos consignados </a> </h2>
+6 de maio de 2024 <a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> Saiba mais + </a> <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> </a> <h2> <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> INSS Antecipa Pagamentos em Resposta a Calamidade no RS </a> </h2>
+6 de maio de 2024 <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> Saiba mais + </a> <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> </a> <h2> <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> A história da Fernanda Montenegro com o INSS </a> </h2>
+23 de abril de 2024 <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> Saiba mais + </a>

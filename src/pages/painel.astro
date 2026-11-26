@@ -1,0 +1,241 @@
+---
+// Painel de notícias: o Marketing envia as publicações do Instagram, a Dra. Paula aprova. A API fica em functions/api (Cloudflare).
+// Fora do Google (robots.txt e noindex) e fora do mapa do site.
+import '../styles/global.css';
+import { CATEGORIAS } from '../../painel/servidor.js';
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Painel de notícias | Aldrigues Cândido</title>
+  <link rel="icon" href="/img/logo-oficial.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Manrope:wght@400..700&display=swap" rel="stylesheet" />
+</head>
+<body class="painel">
+  <header class="painel-topo">
+    <img src="/img/logo-dourada.png" alt="Aldrigues Cândido Advocacia" width="143" height="50" />
+    <div id="quem" hidden><span id="quem-nome"></span><button type="button" class="botao contorno" id="sair">Sair</button></div>
+  </header>
+
+  <main class="painel-corpo">
+    <section id="tela-entrar" class="cartao entrar" hidden>
+      <h1>Painel de notícias</h1>
+      <form id="form-entrar">
+        <label>Quem é você?
+          <select name="usuario" required>
+            <option value="marketing">Marketing</option>
+            <option value="paula">Dra. Paula</option>
+          </select>
+        </label>
+        <label>Senha <input type="password" name="senha" required autocomplete="current-password" /></label>
+        <p class="erro" role="alert"></p>
+        <button class="botao ouro" type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <div id="tela-painel" hidden>
+      <section class="cartao" id="nova" aria-labelledby="t-nova">
+        <h2 id="t-nova">Nova notícia</h2>
+        <p class="dica">Copie a publicação do Instagram. Ela só vai para o site depois que a Dra. Paula aprovar.</p>
+        <form id="form-nova">
+          <label>Título <input name="titulo" required minlength="5" maxlength="160" placeholder="Ex.: Novas regras da aposentadoria especial" /></label>
+          <label>Categoria
+            <select name="categoria"><option value="">Escolher depois (o site deduz pelo título)</option>{CATEGORIAS.map((c) => <option>{c}</option>)}</select>
+          </label>
+          <label>Texto (a legenda do post; deixe uma linha em branco entre os parágrafos)
+            <textarea name="texto" required minlength="20" maxlength="10000" rows="9"></textarea>
+          </label>
+          <label>Link da publicação no Instagram (opcional)
+            <input name="link" type="url" placeholder="https://www.instagram.com/p/..." />
+          </label>
+          <label>Foto (JPG, PNG ou WebP, até 1,5 MB: a imagem baixada do post serve)
+            <input name="foto" type="file" accept="image/jpeg,image/png,image/webp" required />
+          </label>
+          <img id="previa" alt="Prévia da foto escolhida" hidden />
+          <p class="erro" role="alert"></p>
+          <button class="botao ouro" type="submit">Enviar para aprovação</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="t-pendentes"><h2 id="t-pendentes">Aguardando aprovação</h2><ul class="lista" id="pendente"></ul></section>
+      <section aria-labelledby="t-recusadas"><h2 id="t-recusadas">Recusadas</h2><ul class="lista" id="recusada"></ul></section>
+      <section aria-labelledby="t-publicadas"><h2 id="t-publicadas">Publicadas no site</h2><ul class="lista" id="aprovada"></ul></section>
+      <section id="historico" aria-labelledby="t-historico" hidden>
+        <h2 id="t-historico">Histórico</h2>
+        <p class="dica">Tudo o que foi feito no painel: as últimas 300 ações. A cópia completa para o DBeaver sai com <code>npm run banco</code>.</p>
+        <div class="tabela-rolagem">
+          <table>
+            <thead><tr><th scope="col">Quando</th><th scope="col">Quem</th><th scope="col">O quê</th><th scope="col">Notícia</th><th scope="col">Detalhe</th><th scope="col">IP</th></tr></thead>
+            <tbody id="registro"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <p id="aviso" class="aviso" role="status" aria-live="polite"></p>
+  </main>
+
+  <script>
+    type Post = { id: string; titulo: string; texto: string; link?: string; categoria?: string; autor: string; status: string; criada: string; data?: string; slug?: string; motivo?: string };
+    type Eu = { usuario: string; nome: string; papel: string };
+    const NOMES: Record<string, string> = { marketing: 'Marketing', paula: 'Dra. Paula' };
+    const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+    let eu: Eu | null = null;
+
+    // toda alteração leva o cabeçalho X-Painel (a API recusa sem ele)
+    async function api(caminho: string, opcoes: RequestInit = {}) {
+      const r = await fetch(`/api/${caminho}`, { ...opcoes, headers: { 'X-Painel': '1', ...(opcoes.body && !(opcoes.body instanceof FormData) ? { 'Content-Type': 'application/json' } : {}) } });
+      const dados = await r.json().catch(() => ({}));
+      if (r.status === 401 && caminho !== 'entrar') mostrarEntrar();
+      if (!r.ok) throw new Error(dados.erro || 'Algo deu errado. Tente de novo.');
+      return dados;
+    }
+    const avisar = (t: string) => { $('#aviso').textContent = t; };
+
+    // monta elementos sem innerHTML: o que veio do formulário nunca vira código na página
+    function el(tag: string, props: Record<string, any> = {}, ...filhos: (Node | string | null | false)[]) {
+      const e = Object.assign(document.createElement(tag), props);
+      filhos.forEach((f) => f && e.append(f));
+      return e;
+    }
+    const quando = (iso: string) => new Date(iso).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+
+    function cartao(p: Post) {
+      const aprovadora = eu?.papel === 'aprovadora';
+      const acoes = el('div', { className: 'acoes' });
+      const botao = (texto: string, classe: string, fn: () => Promise<unknown>) => {
+        const b = el('button', { type: 'button', className: `botao ${classe}`, textContent: texto }) as HTMLButtonElement;
+        b.onclick = async () => { b.disabled = true; try { await fn(); await carregar(); } catch (e) { avisar((e as Error).message); b.disabled = false; } };
+        acoes.append(b);
+      };
+      if (aprovadora && p.status !== 'aprovada') botao('Aprovar e publicar', 'ouro', async () => {
+        if (!confirm(`Publicar "${p.titulo}" no site?`)) throw new Error('Nada foi alterado.');
+        await api(`posts/${p.id}/aprovar`, { method: 'POST' });
+        avisar('Aprovada. O site se atualiza sozinho em poucos minutos.');
+      });
+      if (aprovadora && p.status === 'pendente') botao('Recusar', 'contorno-escuro', async () => {
+        const motivo = prompt('Motivo da recusa (o Marketing vai ver):');
+        if (motivo === null) throw new Error('Nada foi alterado.');
+        await api(`posts/${p.id}/recusar`, { method: 'POST', body: JSON.stringify({ motivo }) });
+        avisar('Recusada.');
+      });
+      if (aprovadora || p.status !== 'aprovada') botao(p.status === 'aprovada' ? 'Tirar do site' : 'Excluir', 'contorno-escuro', async () => {
+        if (!confirm(p.status === 'aprovada' ? `Tirar "${p.titulo}" do site?` : `Excluir "${p.titulo}"?`)) throw new Error('Nada foi alterado.');
+        await api(`posts/${p.id}`, { method: 'DELETE' });
+        avisar(p.status === 'aprovada' ? 'Retirada. O site se atualiza em poucos minutos.' : 'Excluída.');
+      });
+
+      const meta = `Enviada por ${NOMES[p.autor] ?? p.autor} em ${quando(p.criada)}${p.categoria ? ` · ${p.categoria}` : ''}`;
+      return el('li', { className: 'item' },
+        el('img', { src: `/api/foto/${p.id}`, alt: '', loading: 'lazy', width: 160, height: 160 }),
+        el('div', {},
+          el('h3', { textContent: p.titulo }),
+          el('p', { className: 'meta', textContent: meta }),
+          p.status === 'recusada' && el('p', { className: 'motivo', textContent: `Motivo da recusa: ${p.motivo || 'não informado'}` }),
+          p.status === 'aprovada' && p.slug && el('a', { href: `/noticias/${p.slug}/`, target: '_blank', textContent: 'Ver no site' }),
+          el('details', {}, el('summary', { textContent: 'Ler o texto' }), el('p', { className: 'texto-post', textContent: p.texto }),
+            p.link ? el('a', { href: p.link, target: '_blank', rel: 'noopener', textContent: 'Ver no Instagram' }) : ''),
+          acoes));
+    }
+
+    async function carregar() {
+      const posts: Post[] = await api('posts');
+      for (const status of ['pendente', 'recusada', 'aprovada']) {
+        const lista = $(`#${status}`);
+        const daqui = posts.filter((p) => p.status === status);
+        lista.replaceChildren(...(daqui.length ? daqui.map(cartao) : [el('li', { className: 'vazio', textContent: 'Nenhuma.' })]));
+      }
+      $('#historico').hidden = eu?.papel !== 'aprovadora';
+      if (eu?.papel !== 'aprovadora') return;
+      const ACOES: Record<string, string> = { entrou: 'Entrou', saiu: 'Saiu', entrada_recusada: 'Senha errada', enviou: 'Enviou', aprovou: 'Aprovou',
+        recusou: 'Recusou', excluiu: 'Excluiu', tirou_do_site: 'Tirou do site', pedir_atualizacao_do_site: 'Atualização do site' };
+      const linhas: { quando: string; usuario: string; acao: string; titulo: string; detalhe: string; ip: string }[] = await api('registro');
+      $('#registro').replaceChildren(...linhas.map((r) => el('tr', {},
+        ...[quando(r.quando), NOMES[r.usuario] ?? r.usuario ?? '—', ACOES[r.acao] ?? r.acao, r.titulo ?? '', r.detalhe ?? '', r.ip ?? '']
+          .map((t) => el('td', { textContent: t })))));
+    }
+
+    function mostrarEntrar() { eu = null; $('#tela-entrar').hidden = false; $('#tela-painel').hidden = true; $('#quem').hidden = true; }
+    async function mostrarPainel(quem: Eu) {
+      eu = quem;
+      $('#quem-nome').textContent = `Olá, ${quem.nome}`;
+      $('#tela-entrar').hidden = true; $('#tela-painel').hidden = false; $('#quem').hidden = false;
+      // a Dra. Paula começa pelo que espera aprovação
+      if (quem.papel === 'aprovadora') $('#tela-painel').prepend($('#t-pendentes').parentElement!);
+      await carregar();
+    }
+
+    $<HTMLFormElement>('#form-entrar').onsubmit = async (ev) => {
+      ev.preventDefault();
+      const f = ev.target as HTMLFormElement, erro = f.querySelector('.erro')!;
+      erro.textContent = '';
+      try { await mostrarPainel(await api('entrar', { method: 'POST', body: JSON.stringify(Object.fromEntries(new FormData(f))) })); f.reset(); }
+      catch (e) { erro.textContent = (e as Error).message; }
+    };
+
+    $<HTMLFormElement>('#form-nova').onsubmit = async (ev) => {
+      ev.preventDefault();
+      const f = ev.target as HTMLFormElement, erro = f.querySelector('.erro')!, enviar = f.querySelector('button')!;
+      erro.textContent = ''; enviar.disabled = true;
+      try {
+        await api('posts', { method: 'POST', body: new FormData(f) });
+        f.reset(); $<HTMLImageElement>('#previa').hidden = true;
+        avisar('Enviada. Agora aguarda a aprovação da Dra. Paula.');
+        await carregar();
+      } catch (e) { erro.textContent = (e as Error).message; }
+      enviar.disabled = false;
+    };
+
+    $<HTMLInputElement>('#form-nova input[name=foto]').onchange = (ev) => {
+      const arq = (ev.target as HTMLInputElement).files?.[0], previa = $<HTMLImageElement>('#previa');
+      previa.hidden = !arq;
+      if (arq) previa.src = URL.createObjectURL(arq);
+    };
+
+    $('#sair').onclick = async () => { await api('sair', { method: 'POST' }).catch(() => {}); mostrarEntrar(); };
+
+    api('eu').then(mostrarPainel).catch(mostrarEntrar);
+  </script>
+
+  <style>
+    body.painel { background: var(--linho); color: var(--texto); min-height: 100vh; }
+    .painel-topo { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.8rem clamp(1rem, 4vw, 3rem); background: var(--noite); color: var(--creme); }
+    .painel-topo #quem { display: flex; align-items: center; gap: 1rem; }
+    .painel-topo #quem[hidden] { display: none; }
+    .painel-corpo { max-width: 60rem; margin: 0 auto; padding: 2rem clamp(1rem, 4vw, 2rem) 5rem; }
+    .painel h1, .painel h2 { font-family: var(--serif); margin: 2rem 0 1rem; }
+    .cartao { background: #fff; border-radius: var(--raio); padding: clamp(1.2rem, 3vw, 2rem); box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.5); }
+    .cartao h1, .cartao h2 { margin-top: 0; }
+    .entrar { max-width: 26rem; margin: 3rem auto; }
+    .painel form { display: grid; gap: 1rem; }
+    .painel label { display: grid; gap: 0.35rem; font-weight: 600; font-size: 0.95rem; }
+    .painel input, .painel select, .painel textarea { font: 400 1rem var(--sans); padding: 0.7rem 0.8rem; border: 1px solid var(--linha); border-radius: var(--raio); background: var(--branco); color: var(--texto); }
+    .painel input:focus, .painel select:focus, .painel textarea:focus { outline: 2px solid var(--ouro); outline-offset: 1px; }
+    .painel .botao { justify-self: start; cursor: pointer; }
+    .painel .botao:disabled { opacity: 0.5; cursor: wait; }
+    .dica, .meta { color: var(--suave); font-size: 0.92rem; margin: 0 0 1rem; }
+    .erro, .motivo { color: #a1261b; margin: 0; }
+    .erro:empty { display: none; }
+    #previa { max-width: 14rem; border-radius: var(--raio); }
+    .lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+    .item { display: grid; grid-template-columns: 160px 1fr; gap: 1.2rem; background: #fff; border-radius: var(--raio); padding: 1rem; }
+    .item img { width: 160px; height: 160px; object-fit: cover; border-radius: var(--raio); }
+    .item h3 { margin: 0 0 0.3rem; font-size: 1.15rem; }
+    .item details { margin: 0.6rem 0; }
+    .texto-post { white-space: pre-line; }
+    .item .acoes { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.6rem; }
+    .vazio { color: var(--suave); }
+    .tabela-rolagem { overflow-x: auto; background: var(--branco); border-radius: var(--raio); }
+    .painel table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .painel th, .painel td { text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--linha); vertical-align: top; }
+    .painel th { background: var(--noite); color: var(--creme); font-weight: 600; white-space: nowrap; }
+    .aviso { position: fixed; left: 50%; bottom: 1.5rem; translate: -50% 0; margin: 0; padding: 0.8rem 1.2rem; border-radius: var(--raio); background: var(--noite); color: var(--creme); }
+    .aviso:empty { display: none; }
+    @media (max-width: 40rem) { .item { grid-template-columns: 1fr; } .item img { width: 100%; height: auto; aspect-ratio: 1; } }
+  </style>
+</body>
+</html>

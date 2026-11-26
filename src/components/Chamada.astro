@@ -1,0 +1,13 @@
+---
+import Icone from './Icone.astro';
+import { TELEFONE, zap } from '../config';
+interface Props { assunto?: string }
+const { assunto = '' } = Astro.props;
+---
+<aside class="chamada" aria-label="Fale com o escritório">
+  <p>Quer saber se isso vale para o seu caso? Fale com a nossa equipe.</p>
+  <div class="acoes">
+    <a class="botao ouro" href={zap(assunto)}><Icone nome="whatsapp" tamanho={20} />Falar no WhatsApp</a>
+    <a class="botao contorno" href={TELEFONE.link}><Icone nome="telefone" tamanho={20} />Ligar {TELEFONE.texto}</a>
+  </div>
+</aside>

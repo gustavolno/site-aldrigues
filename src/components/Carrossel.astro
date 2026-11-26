@@ -1,0 +1,39 @@
+---
+// Notícias em destaque: troca sozinha a cada 7 s. O tempo é a própria animação da barrinha, então parar a barra
+// (mouse em cima, foco do teclado, movimento reduzido) para o carrossel.
+import { categoria, dataBR } from '../conteudo';
+interface Props { itens: any[] }
+const { itens } = Astro.props;
+---
+<div class="carrossel" data-carrossel>
+  {itens.map((n, i) => (
+    <article class:list={['slide', { ativo: i === 0 }]} inert={i !== 0}>
+      <div class="tinto"><img src={n.frontmatter.imagem} alt="" width="800" height="500" loading={i === 0 ? 'lazy' : 'lazy'} decoding="async" /></div>
+      <div class="slide-texto">
+        <p class="slide-meta"><span>{categoria(n)}</span><time datetime={n.frontmatter.data}>{dataBR(n.frontmatter.data)}</time></p>
+        <h3><a href={`/noticias/${n.slug}/`}>{n.frontmatter.titulo}</a></h3>
+      </div>
+    </article>
+  ))}
+  <div class="barras" role="group" aria-label="Escolher notícia em destaque">
+    {itens.map((n, i) => (
+      <button type="button" class:list={['barra', { ativa: i === 0 }]} aria-pressed={i === 0 ? 'true' : 'false'}
+        aria-label={`Notícia ${i + 1}: ${n.frontmatter.titulo}`}><i><b></b></i></button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-carrossel]').forEach((c) => {
+    const slides = [...c.querySelectorAll<HTMLElement>('.slide')];
+    const barras = [...c.querySelectorAll<HTMLButtonElement>('.barra')];
+    const ir = (k: number) => {
+      slides.forEach((s, i) => { s.classList.toggle('ativo', i === k); s.inert = i !== k; });
+      barras.forEach((b, i) => { b.classList.toggle('ativa', i === k); b.setAttribute('aria-pressed', String(i === k)); });
+    };
+    barras.forEach((b, i) => {
+      b.addEventListener('click', () => ir(i));
+      b.querySelector('b')!.addEventListener('animationend', () => ir((i + 1) % slides.length));
+    });
+  });
+</script>

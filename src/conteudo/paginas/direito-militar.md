@@ -1,0 +1,7 @@
+---
+titulo: "Direito Militar"
+fonte: "Anuário 2024/2025 do escritório"
+---
+<p>Ao mesmo tempo que os militares estaduais ou federais possuem direitos especiais, também possuem obrigações diferenciadas, em razão destas particularidades, o Constituinte Originário assegurou aos militares o direito de serem processados e julgados perante uma Justiça Especializada, a Justiça Militar da União ou a Justiça Militar dos Estados e do Distrito Federal.</p>
+<p>Ainda, os processos disciplinares são garantias aos acusados estabelecidos por parâmetros de legalidade prévios, oportunizando o contraditório e a ampla defesa, durante a apuração, cujo desfecho é o julgamento da conduta violadora ou não da disciplina do serviço, mais especificamente militar, que reflete na expedição de um ato administrativo punitivo ou absolutório.</p>
+<p>No entanto, durante o viés da apuração ou por ocasião do julgamento disciplinar, vários vícios podem coexistir para impedir a correta aplicação da lei: podem ser incorreções quanto ao desenvolvimento da própria apuração ou julgamento mal feito ou inadequado para a situação em questão. Em outras palavras, a irregularidade pode ser de cunho processual (não atingimento das formalidades, suspeição ou impedimento do encarregado) ou de cunho material, relativo ao mérito da questão discutida. É justamente nesses pontos que surgirão as possibilidades de o acusado interpor recursos disciplinares.</p>
