@@ -8,3 +8,4 @@ fonte: "Anuário 2024/2025 do escritório"
 <p>O escritório Aldrigues Cândido &amp; Associados traz em seu legado uma marca indelével de atuação regular na função social, colocando-se à disposição dos cidadãos mais vulneráveis, que tanto carecem de uma assistência jurídica para assegurar seus direitos vilipendiados pelas desigualdades sociais que permeiam nossa nação.</p>
 <h2>Instituto Cândido</h2>
 <p>Criado em 2022, em homenagem ao pai da Dra. Wanessa Aldrigues Cândido, Janir Cândido da Silva, para auxiliar as famílias de baixa renda da Região de Brasília.</p>
+<img src="/img/escritorio/instituto-candido.jpg" alt="Ação de entrega de doações do Instituto Cândido" width="518" height="388" loading="lazy" decoding="async" />

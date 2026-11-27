@@ -11,3 +11,6 @@ banco/
 # originais recebidos (o site usa a versão comprimida em public/video/)
 *.pdf
 /WhatsApp Video*.mp4
+# arquivos recebidos soltos na raiz (o site usa cópias tratadas em public/img/)
+/*.jpg
+/*.png

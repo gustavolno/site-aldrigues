@@ -182,7 +182,7 @@ html:not(.js) .botao-menu { display: none; } /* sem JavaScript, os links ficam n
 @media (min-width: 900px) { .fundadora-grade { grid-template-columns: 5fr 7fr; gap: 5rem; } }
 .retrato { position: relative; margin: 0 18px 18px 0; max-width: 420px; }
 .retrato::before { content: ''; position: absolute; inset: 0; translate: 18px 18px; border: 1px solid var(--ouro); }
-.retrato img { position: relative; width: 100%; aspect-ratio: 570 / 861; object-fit: cover; }
+.retrato img { position: relative; width: 100%; aspect-ratio: 432 / 548; object-fit: cover; }
 .cargo { font-family: var(--serif); font-style: italic; font-size: 1.4rem; color: var(--ouro-texto); margin: 0 0 0.4rem; }
 .nome { font-size: clamp(2.3rem, 4.2vw, 3.5rem); }
 
@@ -422,6 +422,15 @@ main > .contato:first-child .contato-topo { padding-top: calc(var(--altura-topo)
 .texto h4 { font: 700 1.15rem/1.4 var(--sans); margin: 2rem 0 0.6rem; }
 .texto a { color: var(--ouro-texto); }
 .texto img { border-radius: var(--raio); margin: 1.5rem 0; }
+.texto .galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+.texto .galeria img { margin: 0; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.texto .slides img { aspect-ratio: 3 / 4; }
+.texto table { border-collapse: collapse; margin: 1rem 0 1.5rem; }
+.texto th, .texto td { padding: 0.45rem 1.2rem 0.45rem 0; border-bottom: 1px solid var(--fio); text-align: left; }
+.texto .retrato-texto { width: 100%; max-width: 300px; }
+@media (min-width: 700px) { .texto .retrato-texto { float: right; width: 40%; margin: 0.4rem 0 1.5rem 2rem; } }
+/* o próximo título e a chamada não sobem ao lado da foto flutuante (exceto o título logo após a foto) */
+.texto h2:not(.retrato-texto + h2), .texto .chamada { clear: both; }
 .texto ul, .texto ol { padding-left: 1.3rem; }
 .texto li { margin: 0.35rem 0; }
 .texto li::marker { color: var(--ouro-texto); }

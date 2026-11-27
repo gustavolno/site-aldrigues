@@ -10,6 +10,14 @@ fonte: "Anuário 2024/2025 do escritório"
 <p>Também criamos o <a href="/pro-bono/">Instituto Cândido</a>, uma iniciativa voltada ao amparo de famílias carentes na região de Taguatinga e do DF, reafirmando nosso compromisso com a responsabilidade social.</p>
 <p>Hoje, com orgulho, olhamos para trás e vemos uma história construída com coragem, amor pelo Direito e respeito às pessoas. E seguimos em frente com a mesma paixão e propósito: servir à sociedade por meio de uma advocacia consciente, combativa e transformadora.</p>
 <blockquote><p>“Sonhamos e realizamos! Na vida escrevemos a história que queremos vivenciar!”</p><p>Wanessa Aldrigues Cândido</p></blockquote>
+<div class="galeria">
+<img src="/img/escritorio/recepcao.jpg" alt="Recepção da sede, com o brasão do escritório na parede" width="925" height="573" loading="lazy" decoding="async" />
+<img src="/img/escritorio/sala-de-espera.jpg" alt="Sala de espera da sede" width="1232" height="750" loading="lazy" decoding="async" />
+<img src="/img/escritorio/atendimento.jpg" alt="Balcão de atendimento da sede" width="628" height="466" loading="lazy" decoding="async" />
+<img src="/img/escritorio/sala-de-reuniao.jpg" alt="Sala de reuniões da sede" width="622" height="373" loading="lazy" decoding="async" />
+<img src="/img/escritorio/premios.jpg" alt="Prêmios e certificados recebidos pelo escritório" width="489" height="358" loading="lazy" decoding="async" />
+<img src="/img/escritorio/auditorio.jpg" alt="Placa do Auditório Janir Cândido da Silva, na sede" width="698" height="470" loading="lazy" decoding="async" />
+</div>
 <h2>Nossa advocacia</h2>
 <p>Nossa advocacia é muito mais do que um relato de conquistas ou fórmulas prontas. É, acima de tudo, reflexo de uma caminhada feita de desafios diários, renúncias silenciosas e vitórias que, muitas vezes, não apareceram nas manchetes, mas marcaram profundamente quem as vivenciou.</p>
 <p>A advocacia é uma profissão de entrega. Ela exige preparo técnico, sim — mas exige também força emocional, ética inegociável, coragem diante da injustiça e, principalmente, paixão. Porque quem escolhe advogar escolhe enfrentar o sistema, acolher a dor do outro e carregar, muitas vezes sozinho, o peso de uma vida que espera por justiça.</p>

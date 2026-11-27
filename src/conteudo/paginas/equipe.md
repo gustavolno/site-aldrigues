@@ -3,6 +3,7 @@ titulo: "Fundadora e equipe"
 antigo: "/equipe/"
 descricao: "Atualmente contamos com uma equipe de advogados especializados em todas as aréas do direito. Buscando melhorar cada vez mais o nosso atendimento."
 ---
+<img class="retrato-texto" src="/img/wanessa.jpg" alt="Dra. Wanessa Aldrigues Cândido" width="432" height="548" loading="lazy" decoding="async" />
 <h2 id="wanessa">Dra. Wanessa Aldrigues Cândido</h2>
 <p><strong>Sócia fundadora</strong> · OAB/DF 22.393 · OAB/MG 128.919 · OAB/GO 40.824 · OAB/ES 15.283</p>
 <p>Empresária, palestrante, advogada militante desde 2005 e especialista em Direito Previdenciário há 24 anos. Sócia fundadora do escritório Aldrigues Cândido Advocacia, com sede em Brasília e filial no Espírito Santo. Possui know-how em gestão de escritório e advocacia em massa, com ênfase em direito sindical, previdenciário, trabalhista e execuções.</p>

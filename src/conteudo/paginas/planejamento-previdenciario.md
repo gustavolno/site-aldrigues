@@ -21,8 +21,3 @@ descricao: "Planejamento Previdenciário A atual Reforma da Previdência trouxe 
 </ul>
 <p>Planejar tendo assessoria jurídica competente e eficiente é sempre a solução mais sábia e viável para lograr um futuro sereno e estável. Na pachorra do dia a dia, perdemos a noção de que o amanhã está aqui ao lado, ao alcance das nossas mãos. O que torna premente que se planeje o mais cedo possível a aposentadoria, rompendo a procrastinação e fazendo o planejar agora.</p>
 <h4>O direito previdenciário é um ramo do direito público surgido da conquista dos direitos sociais no fim do século XIX e início do século XX.</h4>
-0% <h2>Notícias</h2>
-<a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> </a> <h2> <a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> Quadrilha vende acesso a contas do INSS para empréstimos consignados </a> </h2>
-6 de maio de 2024 <a href="/2024/05/06/quadrilha-vende-acesso-a-contas-do-inss-para-emprestimos-consignados/"> Saiba mais + </a> <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> </a> <h2> <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> INSS Antecipa Pagamentos em Resposta a Calamidade no RS </a> </h2>
-6 de maio de 2024 <a href="/2024/05/06/inss-antecipa-pagamentos-em-resposta-a-calamidade-no-rs/"> Saiba mais + </a> <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> </a> <h2> <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> A história da Fernanda Montenegro com o INSS </a> </h2>
-23 de abril de 2024 <a href="/2024/04/23/a-historia-da-fernanda-montenegro-com-o-inss/"> Saiba mais + </a>
