@@ -48,7 +48,7 @@ import { CATEGORIAS } from '../../painel/servidor.js';
           <label>Link da publicação no Instagram (opcional)
             <input name="link" type="url" placeholder="https://www.instagram.com/p/..." />
           </label>
-          <label>Foto (JPG, PNG ou WebP, até 1,5 MB: a imagem baixada do post serve)
+          <label>Foto (JPG, PNG ou WebP: a imagem do post serve; o painel reduz o tamanho sozinho)
             <input name="foto" type="file" accept="image/jpeg,image/png,image/webp" required />
           </label>
           <img id="previa" alt="Prévia da foto escolhida" hidden />
@@ -89,6 +89,18 @@ import { CATEGORIAS } from '../../painel/servidor.js';
       return dados;
     }
     const avisar = (t: string) => { $('#aviso').textContent = t; };
+
+    // os cards do Instagram em PNG passam de 2 MB (limite do banco): reduz para no máximo 1440 px e converte para JPEG antes de enviar
+    async function comprimir(arq: File): Promise<Blob> {
+      const img = await createImageBitmap(arq).catch(() => { throw new Error('Não foi possível ler a foto. Use JPG, PNG ou WebP.'); });
+      const escala = Math.min(1, 1440 / Math.max(img.width, img.height));
+      const c = Object.assign(document.createElement('canvas'), { width: Math.round(img.width * escala), height: Math.round(img.height * escala) });
+      const ctx = c.getContext('2d')!;
+      ctx.fillStyle = '#fff'; // fundo transparente do PNG não fica preto no JPEG
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.drawImage(img, 0, 0, c.width, c.height);
+      return new Promise((ok, falha) => c.toBlob((b) => (b ? ok(b) : falha(new Error('Não foi possível preparar a foto.'))), 'image/jpeg', 0.85));
+    }
 
     // monta elementos sem innerHTML: o que veio do formulário nunca vira código na página
     function el(tag: string, props: Record<string, any> = {}, ...filhos: (Node | string | null | false)[]) {
@@ -164,7 +176,9 @@ import { CATEGORIAS } from '../../painel/servidor.js';
       const f = ev.target as HTMLFormElement, erro = f.querySelector('.erro')!, enviar = f.querySelector('button')!;
       erro.textContent = ''; enviar.disabled = true;
       try {
-        await api('posts', { method: 'POST', body: new FormData(f) });
+        const dados = new FormData(f), foto = dados.get('foto') as File;
+        if (foto?.size) dados.set('foto', await comprimir(foto), 'foto.jpg');
+        await api('posts', { method: 'POST', body: dados });
         f.reset(); $<HTMLImageElement>('#previa').hidden = true;
         avisar('Rascunho salvo. Com o OK da Dra. Paula, clique em Publicar no site.');
         await carregar();
