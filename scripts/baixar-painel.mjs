@@ -1,4 +1,4 @@
-// Roda sozinho antes de cada build (npm run build): traz do painel as notícias aprovadas pela Dra. Paula, com as fotos,
+// Roda sozinho antes de cada build (npm run build): traz do painel as notícias publicadas, com as fotos,
 // e grava como .md em src/conteudo/noticias-painel. A partir daí viram páginas como as outras notícias.
 // Só age com PAINEL_URL definido (no Cloudflare Pages: o endereço do próprio site). Sem ele, o build usa só os .md do projeto.
 import fs from 'node:fs';

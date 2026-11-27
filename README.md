@@ -26,22 +26,22 @@ npm run build      # gera a pasta dist/ (o que vai para a hospedagem)
 
 ## Painel de notícias (`/painel/`)
 
-O Marketing envia as publicações do Instagram (foto, título, texto e link); só a Dra. Paula aprova. Ao aprovar, o
-Cloudflare refaz o site sozinho e a notícia aparece em `/noticias/` em poucos minutos, como as outras.
+Um login só, o do Marketing: salva a publicação do Instagram (foto, título, texto e link) como rascunho, manda para a
+Dra. Paula pelo WhatsApp e, com o OK dela, clica em **Publicar no site**. O Cloudflare refaz o site sozinho e a notícia aparece em `/noticias/` em poucos minutos, como as outras.
 
 | Peça | Onde |
 |---|---|
 | Tela do painel | `src/pages/painel.astro` |
-| API (login, envio, aprovação) | `functions/api/` (Cloudflare Pages Functions) |
+| API (login, rascunho, publicação) | `functions/api/` (Cloudflare Pages Functions) |
 | Regras: senhas, sessão, validação, formato da notícia | `painel/servidor.js` (testes: `npm test`) |
 | Banco: tabelas, registro de ações | `painel/banco.js` (as tabelas se criam sozinhas no primeiro acesso) |
-| Traz as aprovadas para o site antes de cada build | `scripts/baixar-painel.mjs` (gera `src/conteudo/noticias-painel/`, fora do git) |
+| Traz as publicadas para o site antes de cada build | `scripts/baixar-painel.mjs` (gera `src/conteudo/noticias-painel/`, fora do git) |
 | Cópia do banco para o DBeaver | `npm run banco` → `banco/painel-noticias.sqlite` (fora do git) |
 
 O banco é um **D1 do Cloudflare** (SQLite na nuvem, não depende de nenhum PC do escritório): tabelas `postagens`, `fotos` e
-`registro`. O registro guarda cada ação (entrou, senha errada, enviou, aprovou, recusou, excluiu, tirou do site, atualização
+`registro`. O registro guarda cada ação (entrou, senha errada, salvou rascunho, publicou, excluiu, tirou do site, atualização
 do site), com quem, quando, IP e navegador, e o painel nunca apaga essas linhas. Uma postagem excluída continua no banco
-marcada como `excluida`; só a foto é apagada. A Dra. Paula vê as últimas 300 ações na aba **Histórico** do painel.
+marcada como `excluida`; só a foto é apagada. As últimas 300 ações aparecem em **Histórico**, no fim do painel.
 As senhas são segredos do Cloudflare, nunca ficam no código.
 O painel só funciona publicado no Cloudflare (no `npm run dev` a tela abre, mas não há API).
 
@@ -60,11 +60,11 @@ Trocar de computador não exige migrar nada: o banco fica no Cloudflare.
 1. **Workers e Pages → D1 → Criar banco** com o nome `painel-noticias` (o `npm run banco` procura esse nome).
    No projeto: **Configurações → Vinculações → Banco D1**, nome da variável `BANCO`.
 2. **Configurações → Variáveis e segredos**, tipo *Segredo*:
-   - `SENHA_MARKETING` e `SENHA_PAULA`: senhas fortes, com pelo menos 12 caracteres (com menos, o login não abre).
+   - `SENHA_MARKETING`: senha forte, com pelo menos 12 caracteres (com menos, o login não abre).
    - `SEGREDO_SESSAO`: texto aleatório com pelo menos 32 caracteres. Para gerar: `node -e "console.log(crypto.randomUUID()+crypto.randomUUID())"`.
 3. **Configurações → Build → Deploy hooks → Adicionar**. Copie o endereço gerado para o segredo `DEPLOY_HOOK`.
 4. Faça um deploy. Depois crie a variável comum `PAINEL_URL` = endereço do site (ex.: `https://www.aldriguescandido.adv.br`)
-   e faça outro deploy. A partir daí cada build traz as notícias aprovadas. Antes disso, o build falharia procurando um painel que ainda não existe.
+   e faça outro deploy. A partir daí cada build traz as notícias publicadas. Antes disso, o build falharia procurando um painel que ainda não existe.
 5. Recomendado: **Segurança → Regras de limitação de taxa** em `/api/entrar` (o painel só atrasa as tentativas de senha erradas).
 
 Use os itens 1 a 3 só no ambiente de *Produção*, para as prévias de teste não mexerem nas notícias reais.

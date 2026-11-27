@@ -1,10 +1,9 @@
 // Painel de notícias: regras usadas pelas funções do Cloudflare (functions/api) e pelo build (scripts/baixar-painel.mjs).
 // Sem dependências: só Web Crypto, que existe no Cloudflare e no Node. Testes: npm test.
 
-/** Os dois logins. Quem é "aprovadora" decide o que vai para o site. */
+/** Um login só: o Marketing salva o rascunho, pega o OK da Dra. Paula pelo WhatsApp e publica. */
 export const USUARIOS = {
-  marketing: { nome: 'Marketing', papel: 'autora' },
-  paula: { nome: 'Dra. Paula', papel: 'aprovadora' },
+  marketing: { nome: 'Marketing' },
 };
 export const CATEGORIAS = ['Previdenciário', 'Trabalhista', 'Saúde', 'Bancário', 'Consumidor', 'Penal', 'Atualidades'];
 export const TIPOS_FOTO = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
@@ -27,7 +26,7 @@ export function iguais(a, b) {
   return dif === 0;
 }
 
-/** Confere usuário e senha contra os segredos SENHA_MARKETING e SENHA_PAULA do Cloudflare. */
+/** Confere usuário e senha contra os segredo SENHA_MARKETING do Cloudflare. */
 export function senhaConfere(env, usuario, senha) {
   const certa = USUARIOS[usuario] && env[`SENHA_${String(usuario).toUpperCase()}`];
   // senha não configurada (ou curta demais) nunca abre o painel
@@ -78,7 +77,6 @@ export function criarSlug(titulo, existentes = []) {
 export const json = (dados, status = 200, cabecalhos = {}) =>
   new Response(JSON.stringify(dados), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', ...cabecalhos } });
 export const idValido = (id) => /^[0-9a-f-]{36}$/.test(String(id));
-export const ehAprovadora = (usuario) => USUARIOS[usuario]?.papel === 'aprovadora';
 /** Data de hoje em Brasília, no formato das notícias (2026-11-25). */
 export const hojeBrasilia = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' });
 

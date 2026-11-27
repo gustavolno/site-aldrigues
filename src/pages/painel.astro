@@ -1,5 +1,5 @@
 ---
-// Painel de notícias: o Marketing envia as publicações do Instagram, a Dra. Paula aprova. A API fica em functions/api (Cloudflare).
+// Painel de notícias: o Marketing salva o rascunho, pega o OK da Dra. Paula pelo WhatsApp e publica. A API fica em functions/api (Cloudflare).
 // Fora do Google (robots.txt e noindex) e fora do mapa do site.
 import '../styles/global.css';
 import { CATEGORIAS } from '../../painel/servidor.js';
@@ -26,12 +26,7 @@ import { CATEGORIAS } from '../../painel/servidor.js';
     <section id="tela-entrar" class="cartao entrar" hidden>
       <h1>Painel de notícias</h1>
       <form id="form-entrar">
-        <label>Quem é você?
-          <select name="usuario" required>
-            <option value="marketing">Marketing</option>
-            <option value="paula">Dra. Paula</option>
-          </select>
-        </label>
+        <input type="hidden" name="usuario" value="marketing" />
         <label>Senha <input type="password" name="senha" required autocomplete="current-password" /></label>
         <p class="erro" role="alert"></p>
         <button class="botao ouro" type="submit">Entrar</button>
@@ -41,7 +36,7 @@ import { CATEGORIAS } from '../../painel/servidor.js';
     <div id="tela-painel" hidden>
       <section class="cartao" id="nova" aria-labelledby="t-nova">
         <h2 id="t-nova">Nova notícia</h2>
-        <p class="dica">Copie a publicação do Instagram. Ela só vai para o site depois que a Dra. Paula aprovar.</p>
+        <p class="dica">Copie a publicação do Instagram e salve. Ela fica em Rascunhos até você clicar em Publicar no site: mande antes para a Dra. Paula pelo WhatsApp.</p>
         <form id="form-nova">
           <label>Título <input name="titulo" required minlength="5" maxlength="160" placeholder="Ex.: Novas regras da aposentadoria especial" /></label>
           <label>Categoria
@@ -58,14 +53,13 @@ import { CATEGORIAS } from '../../painel/servidor.js';
           </label>
           <img id="previa" alt="Prévia da foto escolhida" hidden />
           <p class="erro" role="alert"></p>
-          <button class="botao ouro" type="submit">Enviar para aprovação</button>
+          <button class="botao ouro" type="submit">Salvar rascunho</button>
         </form>
       </section>
 
-      <section aria-labelledby="t-pendentes"><h2 id="t-pendentes">Aguardando aprovação</h2><ul class="lista" id="pendente"></ul></section>
-      <section aria-labelledby="t-recusadas"><h2 id="t-recusadas">Recusadas</h2><ul class="lista" id="recusada"></ul></section>
+      <section aria-labelledby="t-pendentes"><h2 id="t-pendentes">Rascunhos</h2><ul class="lista" id="pendente"></ul></section>
       <section aria-labelledby="t-publicadas"><h2 id="t-publicadas">Publicadas no site</h2><ul class="lista" id="aprovada"></ul></section>
-      <section id="historico" aria-labelledby="t-historico" hidden>
+      <section id="historico" aria-labelledby="t-historico">
         <h2 id="t-historico">Histórico</h2>
         <p class="dica">Tudo o que foi feito no painel: as últimas 300 ações. A cópia completa para o DBeaver sai com <code>npm run banco</code>.</p>
         <div class="tabela-rolagem">
@@ -80,9 +74,9 @@ import { CATEGORIAS } from '../../painel/servidor.js';
   </main>
 
   <script>
-    type Post = { id: string; titulo: string; texto: string; link?: string; categoria?: string; autor: string; status: string; criada: string; data?: string; slug?: string; motivo?: string };
-    type Eu = { usuario: string; nome: string; papel: string };
-    const NOMES: Record<string, string> = { marketing: 'Marketing', paula: 'Dra. Paula' };
+    type Post = { id: string; titulo: string; texto: string; link?: string; categoria?: string; autor: string; status: string; criada: string; data?: string; slug?: string };
+    type Eu = { usuario: string; nome: string };
+    const NOMES: Record<string, string> = { marketing: 'Marketing', paula: 'Dra. Paula' }; // paula: só nos registros antigos
     const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
     let eu: Eu | null = null;
 
@@ -105,37 +99,29 @@ import { CATEGORIAS } from '../../painel/servidor.js';
     const quando = (iso: string) => new Date(iso).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
 
     function cartao(p: Post) {
-      const aprovadora = eu?.papel === 'aprovadora';
       const acoes = el('div', { className: 'acoes' });
       const botao = (texto: string, classe: string, fn: () => Promise<unknown>) => {
         const b = el('button', { type: 'button', className: `botao ${classe}`, textContent: texto }) as HTMLButtonElement;
         b.onclick = async () => { b.disabled = true; try { await fn(); await carregar(); } catch (e) { avisar((e as Error).message); b.disabled = false; } };
         acoes.append(b);
       };
-      if (aprovadora && p.status !== 'aprovada') botao('Aprovar e publicar', 'ouro', async () => {
-        if (!confirm(`Publicar "${p.titulo}" no site?`)) throw new Error('Nada foi alterado.');
+      if (p.status !== 'aprovada') botao('Publicar no site', 'ouro', async () => {
+        if (!confirm(`A Dra. Paula já deu o OK? Publicar "${p.titulo}" no site?`)) throw new Error('Nada foi alterado.');
         await api(`posts/${p.id}/aprovar`, { method: 'POST' });
-        avisar('Aprovada. O site se atualiza sozinho em poucos minutos.');
+        avisar('Publicada. O site se atualiza sozinho em poucos minutos.');
       });
-      if (aprovadora && p.status === 'pendente') botao('Recusar', 'contorno-escuro', async () => {
-        const motivo = prompt('Motivo da recusa (o Marketing vai ver):');
-        if (motivo === null) throw new Error('Nada foi alterado.');
-        await api(`posts/${p.id}/recusar`, { method: 'POST', body: JSON.stringify({ motivo }) });
-        avisar('Recusada.');
-      });
-      if (aprovadora || p.status !== 'aprovada') botao(p.status === 'aprovada' ? 'Tirar do site' : 'Excluir', 'contorno-escuro', async () => {
+      botao(p.status === 'aprovada' ? 'Tirar do site' : 'Excluir', 'contorno-escuro', async () => {
         if (!confirm(p.status === 'aprovada' ? `Tirar "${p.titulo}" do site?` : `Excluir "${p.titulo}"?`)) throw new Error('Nada foi alterado.');
         await api(`posts/${p.id}`, { method: 'DELETE' });
         avisar(p.status === 'aprovada' ? 'Retirada. O site se atualiza em poucos minutos.' : 'Excluída.');
       });
 
-      const meta = `Enviada por ${NOMES[p.autor] ?? p.autor} em ${quando(p.criada)}${p.categoria ? ` · ${p.categoria}` : ''}`;
+      const meta = `Salva por ${NOMES[p.autor] ?? p.autor} em ${quando(p.criada)}${p.categoria ? ` · ${p.categoria}` : ''}`;
       return el('li', { className: 'item' },
         el('img', { src: `/api/foto/${p.id}`, alt: '', loading: 'lazy', width: 160, height: 160 }),
         el('div', {},
           el('h3', { textContent: p.titulo }),
           el('p', { className: 'meta', textContent: meta }),
-          p.status === 'recusada' && el('p', { className: 'motivo', textContent: `Motivo da recusa: ${p.motivo || 'não informado'}` }),
           p.status === 'aprovada' && p.slug && el('a', { href: `/noticias/${p.slug}/`, target: '_blank', textContent: 'Ver no site' }),
           el('details', {}, el('summary', { textContent: 'Ler o texto' }), el('p', { className: 'texto-post', textContent: p.texto }),
             p.link ? el('a', { href: p.link, target: '_blank', rel: 'noopener', textContent: 'Ver no Instagram' }) : ''),
@@ -144,15 +130,13 @@ import { CATEGORIAS } from '../../painel/servidor.js';
 
     async function carregar() {
       const posts: Post[] = await api('posts');
-      for (const status of ['pendente', 'recusada', 'aprovada']) {
+      for (const status of ['pendente', 'aprovada']) {
         const lista = $(`#${status}`);
         const daqui = posts.filter((p) => p.status === status);
         lista.replaceChildren(...(daqui.length ? daqui.map(cartao) : [el('li', { className: 'vazio', textContent: 'Nenhuma.' })]));
       }
-      $('#historico').hidden = eu?.papel !== 'aprovadora';
-      if (eu?.papel !== 'aprovadora') return;
-      const ACOES: Record<string, string> = { entrou: 'Entrou', saiu: 'Saiu', entrada_recusada: 'Senha errada', enviou: 'Enviou', aprovou: 'Aprovou',
-        recusou: 'Recusou', excluiu: 'Excluiu', tirou_do_site: 'Tirou do site', pedir_atualizacao_do_site: 'Atualização do site' };
+      const ACOES: Record<string, string> = { entrou: 'Entrou', saiu: 'Saiu', entrada_recusada: 'Senha errada', enviou: 'Salvou rascunho', aprovou: 'Publicou',
+        excluiu: 'Excluiu', tirou_do_site: 'Tirou do site', pedir_atualizacao_do_site: 'Atualização do site' };
       const linhas: { quando: string; usuario: string; acao: string; titulo: string; detalhe: string; ip: string }[] = await api('registro');
       $('#registro').replaceChildren(...linhas.map((r) => el('tr', {},
         ...[quando(r.quando), NOMES[r.usuario] ?? r.usuario ?? '—', ACOES[r.acao] ?? r.acao, r.titulo ?? '', r.detalhe ?? '', r.ip ?? '']
@@ -164,8 +148,6 @@ import { CATEGORIAS } from '../../painel/servidor.js';
       eu = quem;
       $('#quem-nome').textContent = `Olá, ${quem.nome}`;
       $('#tela-entrar').hidden = true; $('#tela-painel').hidden = false; $('#quem').hidden = false;
-      // a Dra. Paula começa pelo que espera aprovação
-      if (quem.papel === 'aprovadora') $('#tela-painel').prepend($('#t-pendentes').parentElement!);
       await carregar();
     }
 
@@ -184,7 +166,7 @@ import { CATEGORIAS } from '../../painel/servidor.js';
       try {
         await api('posts', { method: 'POST', body: new FormData(f) });
         f.reset(); $<HTMLImageElement>('#previa').hidden = true;
-        avisar('Enviada. Agora aguarda a aprovação da Dra. Paula.');
+        avisar('Rascunho salvo. Com o OK da Dra. Paula, clique em Publicar no site.');
         await carregar();
       } catch (e) { erro.textContent = (e as Error).message; }
       enviar.disabled = false;
@@ -218,7 +200,7 @@ import { CATEGORIAS } from '../../painel/servidor.js';
     .painel .botao { justify-self: start; cursor: pointer; }
     .painel .botao:disabled { opacity: 0.5; cursor: wait; }
     .dica, .meta { color: var(--suave); font-size: 0.92rem; margin: 0 0 1rem; }
-    .erro, .motivo { color: #a1261b; margin: 0; }
+    .erro { color: #a1261b; margin: 0; }
     .erro:empty { display: none; }
     #previa { max-width: 14rem; border-radius: var(--raio); }
     .lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
