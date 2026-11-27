@@ -73,6 +73,7 @@ export function registrar(ctx, acao, { usuario = ctx.data?.usuario, post = null,
 export function atualizarSite(ctx, post) {
   if (!ctx.env.DEPLOY_HOOK) return;
   ctx.waitUntil(fetch(ctx.env.DEPLOY_HOOK, { method: 'POST' })
-    .then((r) => `Cloudflare respondeu ${r.status}`, (e) => `falhou: ${e.message}`)
+    // a mensagem de erro do fetch repete o endereço, que é segredo: não vai para o registro
+    .then((r) => `Cloudflare respondeu ${r.status}`, () => 'falhou: confira o segredo DEPLOY_HOOK no Cloudflare')
     .then((detalhe) => registrar(ctx, 'pedir_atualizacao_do_site', { post, detalhe })));
 }
